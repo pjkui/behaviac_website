@@ -1,0 +1,121 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>流程图设计</title> 
+	<link type="text/css" href="css/wsd.css" rel="stylesheet"/>
+    <link type="text/css" href="css/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="flow/flow.css" rel="stylesheet" />
+		
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.querystring.js"></script>
+    <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+	
+	<script type="text/javascript" src="js/vtip.js"></script>
+    <script type="text/javascript" src="js/messenger.js"></script>
+    <script type="text/javascript" src="js/add_new_tab.js"></script>
+	
+	<script type="text/javascript" src="js/raphael-min.js"></script>
+	<script type="text/javascript" src="js/raphael.path.methods.js"></script>
+	
+	<script type="text/javascript" src="js/json.js"></script>
+    <script type="text/javascript" src="js/wfe.js?11"></script>
+	
+	<script type="text/javascript" src="flow/utils.js"></script>
+	<script type="text/javascript" src="flow/init.js"></script>
+	<script type="text/javascript" src="flow/observer.js"></script>
+	<script type="text/javascript" src="flow/move.js"></script>
+	<script type="text/javascript" src="flow/extend.js"></script>
+	<script type="text/javascript" src="flow/link.js"></script>
+	<script type="text/javascript" src="flow/select.js"></script>
+	<script type="text/javascript" src="flow/key.js"></script>
+	<script type="text/javascript" src="flow/button.js"></script>
+	<script type="text/javascript" src="flow/revocate.js"></script>
+	<script type="text/javascript" src="flow/copy.js"></script>
+	<script type="text/javascript" src="flow/edit.js"></script>
+	<script type="text/javascript" src="flow/help.js"></script>
+	<script type="text/javascript" src="flow/permit.js"></script>
+	<script type="text/javascript" src="flow/flow.js"></script>
+</head> 
+<body data-readonly="false" class="edit-flow-page">
+	<div id="flow_tools">
+		<div id="flow_tools_handle" title="双击隐藏/显示" class="easyui-tooltip">工&nbsp;具&nbsp;箱</div>
+		<div id="tool-body">
+			<table id="tool-icons">
+			  <tr>
+				<td><div class="tool-icon" id="tool-start"><div><div id="startDIV" class="imgDIV" data-type="start" data-text="开始"></div></div><div class="node-text">开始</div></div></td>
+				<td><div class="tool-icon" id="tool-end"><div><div id="endDIV" class="imgDIV" data-type="end" data-text="结束"></div></div><div class="node-text">结束</div></div></td>
+			  </tr>
+			  <tr>
+				<td><div class="tool-icon" id="tool-task"><div><div id="taskDIV" class="imgDIV" data-type="task" data-text="任务"></div></div><div class="node-text">任务</div></div></td>
+			 	<td><div class="tool-icon" id="tool-script"><div><div id="scriptDIV" class="imgDIV" data-type="script" data-text="脚本"></div></div><div class="node-text">脚本</div></div></td>
+			  </tr>
+			  <tr>
+			 	<td><div class="tool-icon" id="tool-api"><div><div id="apiDIV" class="imgDIV" data-type="api" data-text="接口"></div></div><div class="node-text" >接口</div></div></td>
+				<td><div class="tool-icon" id="tool-subflow"><div><div id="subflowDIV" class="imgDIV" data-type="subflow" data-text="子流程"></div></div><div class="node-text">子流</div></div></td>
+			  </tr>
+			  <tr>
+				<td><div class="tool-icon" id="tool-join"><div><div id="joinDIV" class="imgDIV" data-type="join" data-text="合并"></div></div><div class="node-text">合并</div></div></td>
+				<td><div class="tool-icon" id="tool-fork"><div><div id="forkDIV" class="imgDIV" data-type="fork" data-text="分支"></div></div><div class="node-text">分支</div></div></td>
+			  </tr>
+			</table>
+			<div id="tools_btns">
+			    <div class="tool-btn"><span><button id="btn_save"><img src="mxgraph/images/save.gif" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 2px;">保存</button></span></div>
+                <div class="tool-btn"><span><button id="btn_preview"><img src="mxgraph/images/camera.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 2px;">预览</button></span></div>
+                <!--
+                <div class="tool-btn"><span><button id="btn_draft"><img src="mxgraph/images/draft.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 2px;">存稿</button></span></div>
+                -->
+                <div class="tool-btn"><span><button id="btn_debug"><img src="http://www.wsd.com/css/images/bug.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 2px;">调试</button></span></div>
+                <div class="tool-split-line"></div>
+                <div class="tool-btn" style="margin-top:5px;"><span title="快捷键 Delete" class="vtip"><button id="btn_delete"><img src="mxgraph/images/delete2.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 2px;">删除</button></span></div>
+                <div class="tool-btn"><span title="快捷键 Ctrl+C" class="vtip"><button id="btn_clone"><img src="mxgraph/images/clone.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 2px;">克隆</button></span></div>
+                <div class="tool-btn"><span title="快捷键 Ctrl+Z" class="vtip"><button id="btn_undo"><img src="mxgraph/images/undo.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 2px;">撤销</button></span></div><!--后退的意思-->
+                <div class="tool-btn"><span title="快捷键 Ctrl+Y" class="vtip"><button id="btn_redo"><img src="mxgraph/images/redo.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 2px;">重做</button></span></div><!--前进的意思-->
+                <div class="tool-btn"><span title="快捷键 Ctrl+F" class="vtip"><button id="btn_layout"><img src="mxgraph/images/layout.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 2px;">排版</button></span></div>
+			</div>
+			
+			
+		</div>
+	</div>
+		
+	<div id="flow">
+		<div id="regionDIV"></div>
+    </div>
+    
+    <div id="flowHelp">
+    	<div id="flowHelpClose" class="easyui-tooltip" title="需要我时就按下“Ctrl+H”哦!">关闭</div>
+    	<div id="flowHelpBody">
+	    	<div style="margin-top:20px;">
+	    	    <span style="color:#ff0000;font-size:14px;font-weight">
+                # 流程图设计指南 #<br>
+                </span>
+                ---------------------------------------------------------------------------<br>
+                - 双击设计图空白处设置流程<br>
+                - 双击“工具箱”可显示/隐藏工具箱<br>
+	    		- 拖动工具箱的图标到绘图区可创建节点<br>
+			   	- 拖动空白区域可圈选节点或连线<br>
+			   	---------------------------------------------------------------------------<br>
+			    - 单击节点和连线的文字，可编辑文字<br>
+			    - 单击节点的删除按钮可删除当前节点<br>
+			    - 单击节点的克隆按钮可复制当前节点<br>
+			    - 单击节点的排版按钮可对当前节点进行排版<br>
+			    - 双击节点或连线可编辑属性<br>
+			    - 拖动节点的连接点到另一个节点可创建连线<br>
+			    - 选中节点，可通过键盘“上下左右”键移动节点<br>
+			    ---------------------------------------------------------------------------<br>
+			    - 鼠标拖动连线可给连线添加折点<br>
+			    - 鼠标单击折点，可删除折点<br>
+			    - <span id="guide_flow_intro1">按住Ctrl键，拖动连线到新的节点可切换连接的节点</span><br>
+                ---------------------------------------------------------------------------<br>
+	    	</div>
+	    	<div style="margin-top：10px;">  支持快捷键：<br>
+	    		- Ctrl+A：全选；Ctrl+F：排版；Ctrl+C：克隆；<br>
+	    		- Ctrl+Z：撤销；Ctrl+Y：重做；<br>
+	    		- Ctrl+上下左右键：快速移动；<br>
+	    		- Delete：删除节点、连线<br>
+	    	</div>
+    	</div>
+    </div>
+</body> 
+</html>
