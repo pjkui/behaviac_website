@@ -132,14 +132,14 @@ div.editor-menu {
 		}
 </style>
 
-<!--<script type="text/javascript" src="../src/jmgraph.debug.js"></script>-->
-<script type="text/javascript" src="../dist/jmGraph.min.js"></script>
+<script type="text/javascript" src="../src/jmgraph.debug.js"></script>
+<!--<script type="text/javascript" src="../dist/jmGraph.min.js"></script>-->
 
 <script type="text/javascript" src="images.js" ></script>
 <script type="text/javascript">
 
 
-	
+		var _test;
 		//初始化编辑器
 		var editor = new jmEditor({
 			container:'container',
@@ -229,8 +229,9 @@ div.editor-menu {
 		editor.regStyle('switch_selected',style);
 
 		//指定fork元素为方块。背景为:#000
+		//流程同步
 		style = jmUtils.clone(style);
-		style.fill = '#000';
+		style.fill = '#FF0';
 		style.resizable = false;//锁定其不让改变大小
 		style.shape = 'rect';
 		editor.regStyle('fork',style);
@@ -427,7 +428,11 @@ div.editor-menu {
 				var cell = evt.target.type == 'jmCell' ?evt.target: evt.target.findParent('jmCell');
 				if(cell) {							
 					menus.add('属性',function() {
-						alert(1);
+						alert(evt.target);
+						console.log(evt.target);
+						_test = evt.target;
+						console.log("test:"+_test.value);
+						console.log(evt.target.value);
 					}).show();
 					return false;
 				}	

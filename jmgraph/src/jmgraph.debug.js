@@ -578,12 +578,14 @@ jmUtils.require = function(js,callback) {
  */
 jmUtils.bindEvent = function(target,name,fun) {
     if(name && name.indexOf(' ') != -1) {
+        //遍历为所有的事件名添加事件监听属性
         var ns = name.split(' ');
         for(var i=0;i<ns.length;i++) {
             jmUtils.bindEvent(target, ns[i], fun);
         }
         return;
     }
+    //所有绑定的时间名称都不能加on
     if(target.attachEvent) {
         return target.attachEvent("on"+name,fun);
     }    
@@ -6182,12 +6184,12 @@ function jmEditor(option) {
 			this.container = option.container.parentElement;
 			canvas = option.container;
 		}
-
+        //画布的大小
 		this.graph = new jmGraph(this.container,option.width,option.height);			
 
 		//生成框选对象
 		this.selectRect = this.graph.createShape('rect',{style:this.defaultStyle.selectRect});	
-		this.selectRect.visible = false;
+		this.selectRect.visible = true;
 		this.graph.children.add(this.selectRect);		
 		this.graph.registerShape('cellConnectLine',jmConnectLine);		
 		this.initEvents();//绑定基础事件
