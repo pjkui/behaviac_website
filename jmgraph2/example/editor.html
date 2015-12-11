@@ -428,7 +428,8 @@ div.editor-menu {
 				var cell = evt.target.type == 'jmCell' ?evt.target: evt.target.findParent('jmCell');
 				if(cell) {							
 					menus.add('属性',function() {
-						alert(1);
+						alert(evt.target.value);
+						console.log(evt);
 					}).show();
 					return false;
 				}	
