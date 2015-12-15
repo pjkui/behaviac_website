@@ -62,6 +62,7 @@ function jmGraph(canvas,w,h) {
 		if(typeof jmLine !== 'undefined') this.registerShape('line',jmLine);
 		if(typeof jmPath !== 'undefined') this.registerShape('path',jmPath);
 		if(typeof jmRect !== 'undefined') this.registerShape('rect',jmRect);
+		if(typeof jmSequence !== 'undefined') this.registerShape('sequence',jmSequence);
 		if(typeof jmCircle !== 'undefined') this.registerShape('circle',jmCircle);
 		if(typeof jmArc !== 'undefined') this.registerShape('arc',jmArc);
 		if(typeof jmHArc !== 'undefined') this.registerShape('harc',jmHArc);

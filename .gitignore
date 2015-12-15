@@ -2,3 +2,6 @@
 .svn/*
 *baidu*
 *.idea/
+*.iml
+*node_modules/*
+*node_modules/

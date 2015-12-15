@@ -1,10 +1,10 @@
 /**
- * 画矩形
+ * 画顺序节点
  *
  * @class jmSequence
  * @for jmGraph
  * @param {jmGraph} graph 画布
- * @param {object} params 参数 position=矩形左上角顶点坐标,width=宽，height=高,radius=边角弧度
+ * @param {object} params 参数 position=顺序节点左上角顶点坐标,width=宽，height=高,radius=边角弧度
  */
 
 function jmSequence(graph, params) {
@@ -131,7 +131,7 @@ jmSequence.prototype.initPoints = function () {
 }
 
 /**
- * 开始矩形
+ * 开始顺序节点
  *//*
  jmSequence.prototype.draw = function() {
  var p = this.position();

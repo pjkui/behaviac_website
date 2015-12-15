@@ -132,13 +132,12 @@ div.editor-menu {
 		}
 </style>
 
-<script type="text/javascript" src="../src/jmgraph.debug.js"></script>
+<!--<script type="text/javascript" src="../src/jmgraph.debug.js"></script>-->
+<script type="text/javascript" src="../src/jm.libs.js"></script>
 <!--<script type="text/javascript" src="../dist/jmGraph.min.js"></script>-->
 
 <script type="text/javascript" src="images.js" ></script>
 <script type="text/javascript">
-
-
 	
 		//初始化编辑器
 		var editor = new jmEditor({
@@ -250,6 +249,18 @@ div.editor-menu {
 		editor.regStyle('subflow',style);
 		editor.regStyle('subflow_selected',style);
 
+		//指定顺序(Sequence)节点为方块。背景为90EE90,可以改变大小
+		seq_style = jmUtils.clone(style);
+		seq_style.fill = '#FFFF00';
+		seq_style.shape = 'sequence';
+		seq_style.width=130;
+		seq_style.height=50;
+		seq_style.resizable = false;
+		editor.regStyle('seq',seq_style);
+		seq_style_select=jmUtils.clone(seq_style);
+		seq_style_select.fill='#CCCC00'
+		editor.regStyle('seq_selected',seq_style_select);
+
 		//上传文件样式为一张图片
         style = jmUtils.clone(style);
         style.resizable = true;
@@ -304,6 +315,12 @@ div.editor-menu {
 		var subflowimg = editor.regComponent(images.subflow,{width:100,height:80,style:'subflow'});
 		li = document.createElement('li');
 		li.appendChild(subflowimg);
+		components.appendChild(li);
+
+		//顺序节点创建
+		var sequenceImg = editor.regComponent(images.sequence,{width:100,height:50,style:'seq',value:'Sequence'});
+		li = document.createElement('li');
+		li.appendChild(sequenceImg);
 		components.appendChild(li);
 
 		var forkimg = editor.regComponent(images.fork,{width:100,height:40,style:'fork'});
@@ -404,11 +421,16 @@ div.editor-menu {
 		var cell2 = editor.addCell({position:{x:160,y:250},width:100,height:100,style:'subflow',value:'默认值'});
 		//手动连接二个节点
 		cell1.connect(cell2,null,'连线');
+
+		var sequenceCell1 = editor.addCell({position:{x:160,y:350},width:100,height:50,style:'seq',value:'Sequence'});
+		cell2.connect(sequenceCell1);
+
 		var cell3 = editor.addCell({position:{x:600,y:250},width:100,height:100,style:'subflow'});	
 		//设置图标标识			
 		cell3.setOverlay('images/running.gif',30,30,'运行中...');
 
-		var endcell = editor.addCell({position :{x:80,y:500},width:60,height:60,style:'end',value:'结束'});	
+		var endcell = editor.addCell({position :{x:80,y:500},width:60,height:60,style:'end',value:'结束'});
+//		sequenceCell1.connect(endcell);
 		cell2.connect(endcell);
 		editor.graph.refresh();
 

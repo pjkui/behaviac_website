@@ -1,7 +1,7 @@
 define(function(require,exports,module) {
 	
 	var jmUtils = require('../src/common/jmUtils');
-	var jmGraph = require('../src/jmGraph');	
+	var jmGraph = require('../src/common/jmGraph');
 	var jmEditor = require('../src/editor/jmEditor');	
 	
 	module.exports = {
