@@ -68,7 +68,8 @@ loadJMGraph = function(base,callback,debug) {
     			base + 'editor/jmCell.js',
                 base + 'editor/jmConnectLine.js',
     			base + 'editor/jmEditor.js'
-    			];*/
+    			];
+    	*/
     }
     else {
         var js = [
