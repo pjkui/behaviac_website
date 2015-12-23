@@ -1,4 +1,4 @@
-/*! jmGraph 2015-12-15 */
+/*! jmGraph 2015-12-23 */
 /* TencentOpen Behaviac Team*/
 /**
  * 画图基础对象
@@ -3872,7 +3872,6 @@ jmSequence.prototype.checkPoint = function (p) {
     if (p.y > abounds.bottom || p.y < abounds.top) {
         return false;
     }
-
     return true;
 }
 
@@ -4962,9 +4961,9 @@ function jmGraph(canvas,w,h) {
 		if(typeof jmLine !== 'undefined') this.registerShape('line',jmLine);
 		if(typeof jmPath !== 'undefined') this.registerShape('path',jmPath);
 		if(typeof jmRect !== 'undefined') this.registerShape('rect',jmRect);
+		if(typeof jmSequence !== 'undefined') this.registerShape('sequence',jmSequence);
 		if(typeof jmCircle !== 'undefined') this.registerShape('circle',jmCircle);
 		if(typeof jmArc !== 'undefined') this.registerShape('arc',jmArc);
-		if(typeof jmSequence != 'undefined') this.registerShape('sequence',jmSequence);
 		if(typeof jmHArc !== 'undefined') this.registerShape('harc',jmHArc);
 		if(typeof jmPrismatic !== 'undefined') this.registerShape('prismatic',jmPrismatic);
 		if(typeof jmLabel !== 'undefined') this.registerShape('label',jmLabel);
@@ -5818,7 +5817,7 @@ jmCell.prototype.connect = function(to,id,value) {
 			return false;
 		}
 
-		id = id || this.editor.maxId();
+		id = id || this.editor.maxId();//get a id
 		line = this.graph.createShape('cellConnectLine',{
 			id:id,
 			from:this,
@@ -5978,7 +5977,7 @@ function jmConnectLine(graph,params) {
 	this.selected = false;
 }
 
-jmUtils.extend(jmConnectLine,jmPath);
+jmUtils.extend(jmConnectLine,jmBezier);
 
 /**
  * 初始化图形点,通过元素出口和入口计算最佳连线路径

@@ -480,7 +480,7 @@ jmCell.prototype.connect = function(to,id,value) {
 			return false;
 		}
 
-		id = id || this.editor.maxId();
+		id = id || this.editor.maxId();//get a id
 		line = this.graph.createShape('cellConnectLine',{
 			id:id,
 			from:this,

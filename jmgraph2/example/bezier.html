@@ -36,12 +36,19 @@
 			var p1={x:200,y:80};
 			var p2={x:400,y:100};
 			var p3={x:420,y:210};
-			var p4={x:500,y:120};				
+			var p4={x:500,y:120};
+
+			var pt0={x:100,y:100};
+			var pt1={x:250,y:100};
+			var pt2={x:250,y:400};
+			var pt3={x:400,y:400};
 
 			var bezier = graph.createShape('bezier',{style:style,points:[p0,p1,p2,p3,p4]});
 			graph.children.add(bezier);
 			bezier.canMove(true);
-			
+
+			var bezier1 = graph.createShape('bezier',{style:style,points:[pt0,pt1,pt2,pt3]});
+			graph.children.add(bezier1);
 			
 			var path = graph.createShape('path',{style:lstyle,points:[p0,p1,p2,p3,p4]});
 			graph.children.add(path);

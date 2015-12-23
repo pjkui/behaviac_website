@@ -69,7 +69,6 @@ jmSequence.prototype.checkPoint = function (p) {
     if (p.y > abounds.bottom || p.y < abounds.top) {
         return false;
     }
-
     return true;
 }
 

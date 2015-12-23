@@ -3,7 +3,13 @@
 	<head>
 		<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		
+
+		<link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="../css/editor.css">
+
+		<script type="text/javascript" src="../easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 
 	</head>
 	<body>
@@ -30,8 +36,10 @@
 	<td></td>
 			</tr>
 			<tr>
-				<td class="first">
-					<ul id="components"></ul>
+				<td class="first components ">
+					<ul id="components" >
+
+					</ul>
 				</td>
 				<td>
 			<div id="container">				
@@ -47,17 +55,16 @@
 		<div id="json"></div>
 		<div id="expimagearea" style="display:none;">
 			<div style="position:relative; height:60px;">
-			<a href="#" style="position:fixed;" onclick="javascript:document.getElementById('expimagearea').style.display='none';">关闭</a>
-<span style="color:red;float:right;">请右健另存为: </span>
-</div>
-<img id="expimage" />
+				<a href="#" style="position:fixed;" onclick="javascript:document.getElementById('expimagearea').style.display='none';">关闭</a>
+				<span style="color:red;float:right;">请右健另存为: </span>
+			</div>
+			<img id="expimage" />
 		</div>
 	</body>
 </html>
 <style>
 html,body,div{
 	width:100%;
-	height:100%;
 	margin:0;
 	padding:0;
 }
@@ -138,11 +145,13 @@ div.editor-menu {
 
 <script type="text/javascript" src="images.js" ></script>
 <script type="text/javascript">
-	
+
+//	var canvasH = $("#container").height();
+//	var canvasW = $("#container").width();
 		//初始化编辑器
 		var editor = new jmEditor({
 			container:'container',
-			width:800,
+			width:1024,
 			height:600,
 			enabled : true,//可以编辑
 			connectable:true,//可以连线
@@ -302,56 +311,56 @@ div.editor-menu {
 		//编辑器组件
 		var components = document.getElementById('components');
 
-		var startimg = editor.regComponent(images.start,{width:60,height:60,style:'start',value:'开始'});
-		var li = document.createElement('li');
-		li.appendChild(startimg);
-		components.appendChild(li);
-
-		var processimg = editor.regComponent(images.process,{width:100,height:80,style:'process',value:'process'});
-		li = document.createElement('li');
-		li.appendChild(processimg);
-		components.appendChild(li);
-
-		var subflowimg = editor.regComponent(images.subflow,{width:100,height:80,style:'subflow'});
-		li = document.createElement('li');
-		li.appendChild(subflowimg);
-		components.appendChild(li);
-
-		//顺序节点创建
-		var sequenceImg = editor.regComponent(images.sequence,{width:100,height:50,style:'seq',value:'Sequence'});
-		li = document.createElement('li');
-		li.appendChild(sequenceImg);
-		components.appendChild(li);
-
-		var forkimg = editor.regComponent(images.fork,{width:100,height:40,style:'fork'});
-		li = document.createElement('li');
-		li.appendChild(forkimg);
-		components.appendChild(li);
-
-		var joinimg = editor.regComponent(images.join,{width:100,height:50,style:'join'});
-		li = document.createElement('li');
-		li.appendChild(joinimg);
-		components.appendChild(li);
-
-		var switchimg = editor.regComponent(images['switch'],{width:100,height:50,style:'switch'});
-		li = document.createElement('li');
-		li.appendChild(switchimg);
-		components.appendChild(li);
-
-		var upimg = editor.regComponent(images['upload'],{width:100,height:50,style:'upload'});
-		li = document.createElement('li');
-		li.appendChild(upimg);
-		components.appendChild(li);
-
-		var downimg = editor.regComponent(images['download'],{width:100,height:50,style:'download'});
-		li = document.createElement('li');
-		li.appendChild(downimg);
-		components.appendChild(li);
-
-		var endimg = editor.regComponent(images.end,{width:60,height:60,style:'end',value:'结束'});
-		li = document.createElement('li');
-		li.appendChild(endimg);
-		components.appendChild(li);
+//		var startimg = editor.regComponent(images.start,{width:60,height:60,style:'start',value:'开始'});
+//		var li = document.createElement('li');
+//		li.appendChild(startimg);
+//		components.appendChild(li);
+//
+//		var processimg = editor.regComponent(images.process,{width:100,height:80,style:'process',value:'process'});
+//		li = document.createElement('li');
+//		li.appendChild(processimg);
+//		components.appendChild(li);
+//
+//		var subflowimg = editor.regComponent(images.subflow,{width:100,height:80,style:'subflow'});
+//		li = document.createElement('li');
+//		li.appendChild(subflowimg);
+//		components.appendChild(li);
+//
+//		//顺序节点创建
+//		var sequenceImg = editor.regComponent(images.sequence,{width:100,height:50,style:'seq',value:'Sequence'});
+//		li = document.createElement('li');
+//		li.appendChild(sequenceImg);
+//		components.appendChild(li);
+//
+//		var forkimg = editor.regComponent(images.fork,{width:100,height:40,style:'fork'});
+//		li = document.createElement('li');
+//		li.appendChild(forkimg);
+//		components.appendChild(li);
+//
+//		var joinimg = editor.regComponent(images.join,{width:100,height:50,style:'join'});
+//		li = document.createElement('li');
+//		li.appendChild(joinimg);
+//		components.appendChild(li);
+//
+//		var switchimg = editor.regComponent(images['switch'],{width:100,height:50,style:'switch'});
+//		li = document.createElement('li');
+//		li.appendChild(switchimg);
+//		components.appendChild(li);
+//
+//		var upimg = editor.regComponent(images['upload'],{width:100,height:50,style:'upload'});
+//		li = document.createElement('li');
+//		li.appendChild(upimg);
+//		components.appendChild(li);
+//
+//		var downimg = editor.regComponent(images['download'],{width:100,height:50,style:'download'});
+//		li = document.createElement('li');
+//		li.appendChild(downimg);
+//		components.appendChild(li);
+//
+//		var endimg = editor.regComponent(images.end,{width:60,height:60,style:'end',value:'结束'});
+//		li = document.createElement('li');
+//		li.appendChild(endimg);
+//		components.appendChild(li);
 
 		
 
@@ -445,7 +454,7 @@ div.editor-menu {
 			var menus = editor.menus();
 			//如果右击在元素上
 			if(evt.button == 2 && evt.target && evt.target.findParent) {
-				debugger;
+				//debugger;
 				////右击在元素上或其子元素上,向上查询其父容器jmcell
 				var cell = evt.target.type == 'jmCell' ?evt.target: evt.target.findParent('jmCell');
 				if(cell) {							
@@ -545,6 +554,69 @@ div.editor-menu {
 			}
 			editor.graph.refresh();//刷新画布
 		});
-	
-	
+		var nodesData=null;
+		jQuery.ajax({
+			url:"../src/nodes.json", //This URL is for Json file
+			type:"GET",
+			dataType: "json",
+			success: function(data) {
+				nodesData=data;
+				console.log(nodesData);
+				parseNodesData(nodesData,components);
+				//bind listen event
+				bindCompnentClick();
+
+			},
+			error: function() {
+				//Do alert is error
+			}
+		});
+		var groupId=1;
+	function  parseNodesData(datas,ElementNode){
+        if(datas == null ) return;
+		for(d in datas){
+            if(typeof (datas[d]) !== "object") break;
+//            console.log(datas[d].name);
+			if(datas[d].value==0){
+                var li = document.createElement('li');
+                ElementNode.appendChild(li);
+                var ul = document.createElement('ul');
+                li.appendChild(ul);
+
+                var innerli=document.createElement('li');
+                innerli.innerText = datas[d].name;
+				innerli.id="groupName"+(groupId++);
+				innerli.className="groupName";
+				ul.appendChild(innerli);
+
+                parseNodesData(datas[d].children,ul);
+
+
+			}else{
+                //console.log(images[datas[d].value]);
+                var li = document.createElement('li');
+				var forkimg = editor.regComponent(images[datas[d].value],{width:100,height:60,style:'seq',value:datas[d].name});
+				li.appendChild(forkimg);
+                li.appendChild(document.createTextNode(datas[d].name));
+                ElementNode.appendChild(li);
+			}
+		}
+	}
+
+	function  bindCompnentClick()
+	{
+//bind listen event, controll show or not
+		$('li[id^=groupName]').click(function(){
+			// 被点击的那个div
+			var li = $(this);
+			// 被点击的那个div的id
+			var id = li.attr('id');
+			//alert(id);
+			if($(this).next().css("display")=="none"){
+				$(this).nextAll().css("display","block");
+			}else {
+				$(this).nextAll().css("display", "none");
+			}
+		})
+	}
 </script>

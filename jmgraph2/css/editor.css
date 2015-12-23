@@ -1,0 +1,28 @@
+.components{
+    margin: 0;
+    padding:0;
+
+
+}
+.components ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 12px;
+
+}
+.components li{
+    list-style: none;
+    text-align: left;
+    white-space: nowrap;
+    margin: 0;
+    padding:0;
+}
+.groupName{
+    color: #fe5116;
+}
+#components{
+    height: 600px;
+    overflow: scroll;
+
+}

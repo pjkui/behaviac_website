@@ -59,7 +59,7 @@ function jmConnectLine(graph,params) {
 	this.selected = false;
 }
 
-jmUtils.extend(jmConnectLine,jmPath);
+jmUtils.extend(jmConnectLine,jmBezier);
 
 /**
  * 初始化图形点,通过元素出口和入口计算最佳连线路径
