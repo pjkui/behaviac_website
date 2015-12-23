@@ -6051,7 +6051,7 @@ jmConnectLine.prototype.initPoints = function() {
  * @private
  */
 jmConnectLine.prototype.getPoints = function(start,end) {
-	//获取二点的方位，1=left,2=top,3=right,=bottom	
+	//获取二点的方位，1=left,2=top,3=right,=bottom
 	function getDirection(s,e) {
 		if(s.x == e.x) {
 			return s.y > e.y?4:2;//垂直方向
@@ -6065,7 +6065,7 @@ jmConnectLine.prototype.getPoints = function(start,end) {
 		else {
 			return s.y > e.y?1432:1234;//起始点X小于结束点，Y大于结束点则为右下右上
 		}
-	}	
+	}
 	var xOffset = 30;
 	var yOffset = 30;
 	var points = [start];
@@ -6079,9 +6079,9 @@ jmConnectLine.prototype.getPoints = function(start,end) {
 				points.push(p2);
 				break;
 			}
-			case this.to.pos2 : {	
+			case this.to.pos2 : {
 				var p1 = {x:end.x,y:start.y};
-				points.push(p1);			
+				points.push(p1);
 				break;
 			}
 			case this.to.pos3 : {
@@ -6100,14 +6100,14 @@ jmConnectLine.prototype.getPoints = function(start,end) {
 	}
 	else if(start == this.from.pos2) {
 		switch (end) {
-			case this.to.pos1 : {				
+			case this.to.pos1 : {
 				var p1 = {x:start.x,y:end.y};
 				points.push(p1);
 				break;
 			}
-			case this.to.pos2 : {	
+			case this.to.pos2 : {
 				var p1 = {x:start.x,y:Math.min(start.y - yOffset,end.y - yOffset)};
-				points.push(p1);			
+				points.push(p1);
 				break;
 			}
 			case this.to.pos3 : {
@@ -6126,16 +6126,16 @@ jmConnectLine.prototype.getPoints = function(start,end) {
 	}
 	else if(start == this.from.pos3) {
 		switch (end) {
-			case this.to.pos1 : {				
+			case this.to.pos1 : {
 				var p1 = {x:(end.x - start.x) / 2 + start.x,y:start.y};
 				points.push(p1);
 				var p2 = {x:p1.x,y:end.y};
 				points.push(p2);
 				break;
 			}
-			case this.to.pos2 : {	
+			case this.to.pos2 : {
 				var p1 = {x:end.x,y:start.y};
-				points.push(p1);			
+				points.push(p1);
 				break;
 			}
 			case this.to.pos3 : {
@@ -6154,16 +6154,16 @@ jmConnectLine.prototype.getPoints = function(start,end) {
 	}
 	else if(start == this.from.pos4) {
 		switch (end) {
-			case this.to.pos1 : {				
+			case this.to.pos1 : {
 				var p1 = {x:start.x,y:end.y};
-				points.push(p1);		
+				points.push(p1);
 				break;
 			}
-			case this.to.pos2 : {	
+			case this.to.pos2 : {
 				var p1 = {x:start.x,y:Math.max((end.y - start.y) / 2 + start.y,end.y - yOffset)};
-				points.push(p1);	
+				points.push(p1);
 				var p2 = {x:end.x,y:p1.y};
-				points.push(p2);	
+				points.push(p2);
 				break;
 			}
 			case this.to.pos3 : {
@@ -6195,13 +6195,22 @@ jmConnectLine.prototype.getPoints = function(start,end) {
 	to.x -= minx;
 	from.y -= miny;
 	to.y -= miny;
-	this.arraw.start(from);    
+	this.arraw.start(from);
     this.arraw.end(to);
     this.arraw.style.stroke = this.arraw.style.fill = this.style.stroke;
     //实心箭头
+
+	//把所有的points当做控制点，然后生成贝塞尔曲线
 	//points = points.concat(this.arraw.initPoints(false));
-	return points;
+	var BezierPoints=[];
+	for(var t = 0;t <= 1;t += 0.01) {
+		var p = this.getPoint(points,t);
+		BezierPoints.push(p);
+	}
+	BezierPoints.push(points[points.length - 1]);
+	return BezierPoints;
 }
+
 
 /**
  * 选择当前连线
