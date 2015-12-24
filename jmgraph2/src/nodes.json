@@ -10,7 +10,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
 
@@ -21,7 +21,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       }
@@ -37,7 +37,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -47,7 +47,7 @@
         "style":{
         "width":100,
         "height":50,
-        "style":"seq",
+        "shape":"seq",
         "value":"Sequence"
       }
       },
@@ -61,7 +61,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -71,7 +71,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -81,7 +81,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"fusiformis",
               "value":"Sequence"
             }
           }
@@ -99,7 +99,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -109,7 +109,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -119,7 +119,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -129,7 +129,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -139,7 +139,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -149,7 +149,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -159,7 +159,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       }
@@ -175,7 +175,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -189,7 +189,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -199,7 +199,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -209,7 +209,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           }
@@ -225,7 +225,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -235,7 +235,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -245,7 +245,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           }
@@ -262,7 +262,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -272,7 +272,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -282,7 +282,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           }
@@ -294,7 +294,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       }
@@ -310,7 +310,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -320,7 +320,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -330,7 +330,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -340,7 +340,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -350,7 +350,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -360,7 +360,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -370,7 +370,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -380,7 +380,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -390,7 +390,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -400,7 +400,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       },
@@ -410,7 +410,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       }
@@ -432,7 +432,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -442,7 +442,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           }
@@ -459,7 +459,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -469,7 +469,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           },
@@ -479,7 +479,7 @@
             "style":{
               "width":100,
               "height":50,
-              "style":"seq",
+              "shape":"seq",
               "value":"Sequence"
             }
           }
@@ -497,7 +497,7 @@
         "style":{
           "width":100,
           "height":50,
-          "style":"seq",
+          "shape":"seq",
           "value":"Sequence"
         }
       }

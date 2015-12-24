@@ -69,58 +69,59 @@ jmUtils.extend(jmConnectLine,jmBezier);
  * @return {array} 所有描点集合
  */
 jmConnectLine.prototype.initPoints = function() {	
-	var start = this.from.pos4;
-	var end = this.to.pos2;
-	var toposition = this.to.position();
-	var frompostion = this.from.position();
-	//节点在目标节点左边
-	if(frompostion.x + this.from.width() < toposition.x) {
-		start = this.from.pos3;
-		var offy = toposition.y - frompostion.y - this.from.height();
-		//节点在目标节点上边
-		if(offy > 0) {
-			if(offy > 30) {
-				start = this.from.pos4;
-			}
-			else {
-				start = this.from.pos3;
-			}
-			end = this.to.pos2;
-		}
-		//目标节点在起始节点上边
-		else if(frompostion.y > toposition.y + this.to.height()) {
-			end = this.to.pos4;
-		}
-		else {
-			end = this.to.pos1;
-		}		
-	}
-	//如果起始在结束右边
-	else if(frompostion.x > toposition.x + this.to.width()) {	
-		start = this.from.pos1;	
-		var offy = toposition.y - frompostion.y - this.from.height();
-		if(offy > 0) {
-			if(offy > 30) {
-				start = this.from.pos4;
-			}
-			else {
-				start = this.from.pos1;
-			}
-			end = this.to.pos2;
-		}
-		else if(frompostion.y > toposition.y + this.to.height()) {			
-			end = this.to.pos4;
-		}
-		else {
-			end = this.to.pos3;
-		}	
-		
-	}
-	else if(frompostion.y > toposition.y + this.to.height()) {
-		start = this.from.pos1;
-		end = this.to.pos1;
-	}
-	
+	var start = this.from.pos3;//默认左边出
+	var end = this.to.pos1;//右边入
+    //下面是自动调整出入点的，现在不考虑这么多，
+	//var toposition = this.to.position();
+	//var frompostion = this.from.position();
+	////节点在目标节点左边
+	//if(frompostion.x + this.from.width() < toposition.x) {
+	//	start = this.from.pos3;
+	//	var offy = toposition.y - frompostion.y - this.from.height();
+	//	//节点在目标节点上边
+	//	if(offy > 0) {
+	//		if(offy > 30) {
+	//			start = this.from.pos4;
+	//		}
+	//		else {
+	//			start = this.from.pos3;
+	//		}
+	//		end = this.to.pos2;
+	//	}
+	//	//目标节点在起始节点上边
+	//	else if(frompostion.y > toposition.y + this.to.height()) {
+	//		end = this.to.pos4;
+	//	}
+	//	else {
+	//		end = this.to.pos1;
+	//	}
+	//}
+	////如果起始在结束右边
+	//else if(frompostion.x > toposition.x + this.to.width()) {
+	//	start = this.from.pos1;
+	//	var offy = toposition.y - frompostion.y - this.from.height();
+	//	if(offy > 0) {
+	//		if(offy > 30) {
+	//			start = this.from.pos4;
+	//		}
+	//		else {
+	//			start = this.from.pos1;
+	//		}
+	//		end = this.to.pos2;
+	//	}
+	//	else if(frompostion.y > toposition.y + this.to.height()) {
+	//		end = this.to.pos4;
+	//	}
+	//	else {
+	//		end = this.to.pos3;
+	//	}
+	//
+	//}
+	//else if(frompostion.y > toposition.y + this.to.height()) {
+	//	start = this.from.pos1;
+	//	end = this.to.pos1;
+	//}
+	//
 	this.points =this.getPoints(start,end);
 	return this.points;
 }

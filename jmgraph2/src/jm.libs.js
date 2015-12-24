@@ -1,4 +1,4 @@
-/*! jmGraph 2015-12-23 */
+/*! jmGraph 2015-12-24 */
 /* TencentOpen Behaviac Team*/
 /**
  * 画图基础对象
@@ -3500,6 +3500,86 @@ jmPrismatic.prototype.center = function(p) {
 }
 
 ;/**
+ * 画梭形
+ *
+ * @class jmFosiformis
+ * @for jmGraph
+ * @param {jmGraph} graph 画布
+ * @param {object} params 参数 center=棱形中心点，width=棱形宽,height=棱形高
+ */
+
+function jmFusiformis(graph,params) {
+	if(!params) params = {};
+	/**
+	 * 当前对象类型名jmFusiformis
+	 *
+	 * @property type
+	 * @type string
+	 */
+	this.type = 'jmFusiformis';
+	this.points = params.points || [];
+	var style = params.style || {};
+	
+	this.graph = graph;
+		
+	this.center(params.center || {x:0,y:0});
+	this.width(params.width || 0);
+
+	//this.on('PropertyChange',this.initPoints);
+	this.height(params.height  || 0);
+
+	this.initializing(graph.context,style);
+}
+jmUtils.extend(jmFusiformis,jmPath);//继承path图形
+
+
+/**
+ * 初始化图形点
+ * 计算棱形顶点
+ * 
+ * @method initPoints
+ * @private
+ */
+jmFusiformis.prototype.initPoints = function() {
+	/*//获取当前控件的绝对位置
+	var bounds = this.parent && this.parent.absoluteBounds?this.parent.absoluteBounds:this.absoluteBounds;
+    if(!bounds) bounds = this.parent && this.parent.getAbsoluteBounds?this.parent.getAbsoluteBounds():this.getAbsoluteBounds();
+	if(!bounds) bounds= {left:0,top:0,right:0,bottom:0};
+*/
+	var location = this.getLocation();
+	var mw = location.width / 2;
+	var mh = location.height / 2;
+	if(mw<mh*2)
+	{
+		//if width less than 2 times of height, then reset the width
+		this.width=4*mh;
+		mw = 2 * mh;
+	}
+	this.points = [];
+	//this.points.push({x:location.center.x - mw,y:location.center.y});
+	//this.points.push({x:location.center.x,y:location.center.y + mh});
+	//this.points.push({x:location.center.x + mw,y:location.center.y});
+	//this.points.push({x:location.center.x,y:location.center.y - mh});
+	this.points.push({x:location.center.x - mw,y:location.center.y});
+	this.points.push({x:location.center.x - mw + mh,y:location.center.y - mh});
+	this.points.push({x:location.center.x + mw - mh,y:location.center.y - mh});
+	this.points.push({x:location.center.x + mw ,y:location.center.y});
+	this.points.push({x:location.center.x + mw -mh,y:location.center.y + mh});
+	this.points.push({x:location.center.x - mw + mh,y:location.center.y + mh});
+}
+
+/**
+ * 设定或获取宽度
+ *
+ * @method center
+ * @param {point} p 图形中心点
+ * @return {point} 当前中心坐标
+ */
+jmFusiformis.prototype.center = function(p) {
+	return this.setValue('center',p);
+}
+
+;/**
  * 贝塞尔曲线,继承jmPath
  * N阶，参数points中为控制点
  *
@@ -4966,6 +5046,7 @@ function jmGraph(canvas,w,h) {
 		if(typeof jmArc !== 'undefined') this.registerShape('arc',jmArc);
 		if(typeof jmHArc !== 'undefined') this.registerShape('harc',jmHArc);
 		if(typeof jmPrismatic !== 'undefined') this.registerShape('prismatic',jmPrismatic);
+		if(typeof jmFusiformis !== 'undefined') this.registerShape('fusiformis',jmFusiformis);
 		if(typeof jmLabel !== 'undefined') this.registerShape('label',jmLabel);
 		if(typeof jmImage !== 'undefined') {
 			this.registerShape('image',jmImage);
@@ -5987,58 +6068,59 @@ jmUtils.extend(jmConnectLine,jmBezier);
  * @return {array} 所有描点集合
  */
 jmConnectLine.prototype.initPoints = function() {	
-	var start = this.from.pos4;
-	var end = this.to.pos2;
-	var toposition = this.to.position();
-	var frompostion = this.from.position();
-	//节点在目标节点左边
-	if(frompostion.x + this.from.width() < toposition.x) {
-		start = this.from.pos3;
-		var offy = toposition.y - frompostion.y - this.from.height();
-		//节点在目标节点上边
-		if(offy > 0) {
-			if(offy > 30) {
-				start = this.from.pos4;
-			}
-			else {
-				start = this.from.pos3;
-			}
-			end = this.to.pos2;
-		}
-		//目标节点在起始节点上边
-		else if(frompostion.y > toposition.y + this.to.height()) {
-			end = this.to.pos4;
-		}
-		else {
-			end = this.to.pos1;
-		}		
-	}
-	//如果起始在结束右边
-	else if(frompostion.x > toposition.x + this.to.width()) {	
-		start = this.from.pos1;	
-		var offy = toposition.y - frompostion.y - this.from.height();
-		if(offy > 0) {
-			if(offy > 30) {
-				start = this.from.pos4;
-			}
-			else {
-				start = this.from.pos1;
-			}
-			end = this.to.pos2;
-		}
-		else if(frompostion.y > toposition.y + this.to.height()) {			
-			end = this.to.pos4;
-		}
-		else {
-			end = this.to.pos3;
-		}	
-		
-	}
-	else if(frompostion.y > toposition.y + this.to.height()) {
-		start = this.from.pos1;
-		end = this.to.pos1;
-	}
-	
+	var start = this.from.pos3;//默认左边出
+	var end = this.to.pos1;//右边入
+    //下面是自动调整出入点的，现在不考虑这么多，
+	//var toposition = this.to.position();
+	//var frompostion = this.from.position();
+	////节点在目标节点左边
+	//if(frompostion.x + this.from.width() < toposition.x) {
+	//	start = this.from.pos3;
+	//	var offy = toposition.y - frompostion.y - this.from.height();
+	//	//节点在目标节点上边
+	//	if(offy > 0) {
+	//		if(offy > 30) {
+	//			start = this.from.pos4;
+	//		}
+	//		else {
+	//			start = this.from.pos3;
+	//		}
+	//		end = this.to.pos2;
+	//	}
+	//	//目标节点在起始节点上边
+	//	else if(frompostion.y > toposition.y + this.to.height()) {
+	//		end = this.to.pos4;
+	//	}
+	//	else {
+	//		end = this.to.pos1;
+	//	}
+	//}
+	////如果起始在结束右边
+	//else if(frompostion.x > toposition.x + this.to.width()) {
+	//	start = this.from.pos1;
+	//	var offy = toposition.y - frompostion.y - this.from.height();
+	//	if(offy > 0) {
+	//		if(offy > 30) {
+	//			start = this.from.pos4;
+	//		}
+	//		else {
+	//			start = this.from.pos1;
+	//		}
+	//		end = this.to.pos2;
+	//	}
+	//	else if(frompostion.y > toposition.y + this.to.height()) {
+	//		end = this.to.pos4;
+	//	}
+	//	else {
+	//		end = this.to.pos3;
+	//	}
+	//
+	//}
+	//else if(frompostion.y > toposition.y + this.to.height()) {
+	//	start = this.from.pos1;
+	//	end = this.to.pos1;
+	//}
+	//
 	this.points =this.getPoints(start,end);
 	return this.points;
 }

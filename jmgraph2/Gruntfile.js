@@ -23,6 +23,7 @@ module.exports = function (grunt) {
                     'src/shapes/jmArc.js',
                     'src/shapes/jmHArc.js',
                     'src/shapes/jmPrismatic.js',
+                    'src/shapes/jmFusiformis.js',
                     'src/shapes/jmBezier.js',
                     'src/shapes/jmRect.js',
                     'src/shapes/jmSequence.js',
