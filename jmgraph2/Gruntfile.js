@@ -46,10 +46,20 @@ module.exports = function (grunt) {
                 src: 'src/jm.libs.js',
                 dest: 'src/jm.libs.min.js'
             }
-        }
+        },
+        watch: {
+            scripts: {
+                files: ['src/*/*.js'],
+                tasks: ['concat','uglify'],
+                options: {
+                    spawn: true,
+                },
+            },
+        },
     });
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-watch');//add file watch
     // 默认任务
-    grunt.registerTask('default', ['concat', 'uglify']);
+    grunt.registerTask('default', ['concat', 'uglify','watch']);
 }

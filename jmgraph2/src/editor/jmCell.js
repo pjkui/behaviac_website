@@ -232,6 +232,12 @@ jmCell.prototype.add = function() {
 		}			
 	});
 
+	this.bind('mouseover',function(evt){
+		console.log(evt);
+	});
+	this.bind('mousemove',function(evt){
+		console.log(evt);
+	});
 	if(this.connectable) {		
 		this.bind('mousemove',function() {
 			this.connArc.visible = true;	

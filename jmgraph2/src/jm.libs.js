@@ -1,4 +1,4 @@
-/*! jmGraph 2015-12-24 */
+/*! jmGraph 2015-12-25 */
 /* TencentOpen Behaviac Team*/
 /**
  * 画图基础对象
@@ -5650,6 +5650,12 @@ jmCell.prototype.add = function() {
 		}			
 	});
 
+	this.bind('mouseover',function(evt){
+		console.log(evt);
+	});
+	this.bind('mousemove',function(evt){
+		console.log(evt);
+	});
 	if(this.connectable) {		
 		this.bind('mousemove',function() {
 			this.connArc.visible = true;	
@@ -6733,7 +6739,8 @@ jmEditor.prototype.initEvents = function() {
 			_this.currentComponent.img.style.left = _this.currentComponent.left + 'px';
 			_this.currentComponent.img.style.top = _this.currentComponent.top + 'px';
 			_this.currentComponent.evtX = evtpos.pageX;
-			_this.currentComponent.evtY = evtpos.pageY;	
+			_this.currentComponent.evtY = evtpos.pageY;
+			console.log('mouse move');
 			return false;		
 		}		
 	});
@@ -6743,6 +6750,7 @@ jmEditor.prototype.initEvents = function() {
 		var _this = self;
 		//当有拖放组件时，生成组件元素
 		if(_this.currentComponent) {
+			console.log("mouse up:"+evt);
 			evt = evt || event;
 			var pos = jmUtils.getElementPosition(_this.graph.canvas);
 			var evtpos = jmUtils.getEventPosition(evt);
@@ -7016,6 +7024,7 @@ jmEditor.prototype.regComponent = function(el,option) {
 	el.setAttribute('data-component',this.components.length - 1);
 	var self = this;
 	jmUtils.bindEvent(el,'mousedown',function(evt) {
+		console.log(evt+"mousedown");
 		var _this = self;
 		evt = evt || event;
 		var target = evt.target || evt.srcElement;
