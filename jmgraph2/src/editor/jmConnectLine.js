@@ -31,7 +31,7 @@ function jmConnectLine(graph,params) {
 				start:params.from.outPos2,
 				end:params.to.inPos					
 				},params);
-	
+	//debugger;
 	var arrawstyle = jmUtils.clone(params.style);
 	arrawstyle.fill = style.stroke;
 	params.style = arrawstyle;

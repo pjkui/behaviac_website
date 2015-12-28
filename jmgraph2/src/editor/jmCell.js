@@ -233,10 +233,13 @@ jmCell.prototype.add = function() {
 	});
 
 	this.bind('mouseover',function(evt){
-		console.log(evt);
+		//console.log(evt+"mouse over");
 	});
 	this.bind('mousemove',function(evt){
-		console.log(evt);
+		//console.log(evt+"mousemove");
+	});
+	this.bind("mouseleave",function(evt){
+		//console.log(evt+"mouseleave");
 	});
 	if(this.connectable) {		
 		this.bind('mousemove',function() {

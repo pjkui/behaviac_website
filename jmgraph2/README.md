@@ -48,3 +48,5 @@ y
 从图形的左边开始，顺时针方向，以每边的中点坐标为依据。分别是pos1（左），pos2（上）,pos3（右）,pos4（下）。
 
 #how to development
+
+this.graph 仅作用于canvas上
