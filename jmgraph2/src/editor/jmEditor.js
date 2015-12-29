@@ -251,6 +251,10 @@ jmEditor.prototype.menus = function () {
  * @param {object} option 元素参数，主要为jmcell的参数
  */
 jmEditor.prototype.addCell = function (option) {
+    if (option.value == "precondition" || option.value == "effector") {
+        console.log(option.value + " 节点不能作为独立节点添加到jmEditor中");
+        return;
+    }
     option = option || {};
     option.graph = this.graph;
     option.editor = this;
@@ -343,24 +347,81 @@ jmEditor.prototype.initEvents = function () {
             return false;
         }
     });
-    //编辑器框选中
-    this.graph.bind('mousemove', function (evt) {
-        console.log('graph mousemove');
+
+    this.graph.bind('mouseup', function (evt) {
+        //if (self.currentComponent && evt.target) {
+        //    var cell = evt.target;
+        //    if (cell.findParent) {
+        //        if (cell.type != 'jmSequence') cell = cell.findParent('jmSequence');
+        //    }
+        //
+        //}
+
         if (self.currentComponent && evt.target) {
             var cell = evt.target;
-            console.log(cell.type);
-            if (cell.type != 'jmSequence') cell = cell.findParent('jmSequence');
-            if (cell && cell.type == "jmSequence") {
-                var componentindex = self.currentComponent.img.getAttribute('data-component');
-                if (componentindex == 0) {
+            if (cell.findParent) {
+                if (cell.type != 'jmCell') cell = cell.findParent('jmCell');
+            }
+            if (cell) {
+                var tempNode = self.currentComponent.img.getAttribute('alt');
+                console.log(tempNode + " on " + cell.type + "do action: moveup");
+                if (tempNode == "precondition") {
                     cell.addPrecondition();
-                }
-                else if (componentindex == 1) {
+                } else if (tempNode == "effector") {
                     cell.addPostcondition();
                 }
-                debugger;
             }
         }
+        //if (evt.target) {
+        //    var cell = evt.target;
+        //    console.log(cell.type);
+        //    if (cell.type != 'jmCell') cell = cell.findParent('jmCell');
+        //    if (cell && cell.type == "jmCell") {
+        //    }
+        //}
+        //console.log("in graph mouse up");
+    });
+    this.graph.bind('mousemove', function (evt) {
+        //console.log("in graph mouse move");
+        //
+        //if (evt.target) {
+        //    var cell = evt.target;
+        //    if (cell.type != 'jmGraph') {
+        //        console.log(cell.type);
+        //    }
+        //    if (cell.type != 'jmSequence') cell = cell.findParent('jmSequence');
+        //    if (cell && cell.type == "jmSequence") {
+        //        console.log(cell.type);
+        //        //var componentindex = self.currentComponent.img.getAttribute('data-component');
+        //        //if (componentindex == 0) {
+        //        //    cell.addPrecondition();
+        //        //}
+        //        //else if (componentindex == 1) {
+        //        //    cell.addPostcondition();
+        //        //}
+        //        //debugger;
+        //    }
+        //}
+
+    });
+    //编辑器框选中
+    this.graph.bind('mousemove', function (evt) {
+        //console.log('graph mousemove');
+        //if (self.currentComponent && evt.target) {
+        //    var cell = evt.target;
+        //    console.log(cell.type);
+        //    if (cell.type != 'jmSequence') cell = cell.findParent('jmSequence');
+        //    if (cell && cell.type == "jmSequence") {
+        //        var componentindex = self.currentComponent.img.getAttribute('data-component');
+        //        if (componentindex == 0) {
+        //            cell.addPrecondition();
+        //        }
+        //        else if (componentindex == 1) {
+        //            cell.addPostcondition();
+        //        }
+        //        //debugger;
+        //    }
+        //}
         var _this = self;
         if (_this.selecting) {
             //改变框选控件大小
@@ -383,18 +444,17 @@ jmEditor.prototype.initEvents = function () {
         if (_this.currentComponent) {
             evt = evt || event;
             var evtpos = jmUtils.getEventPosition(evt || event);
-            var dx = evtpos.pageX - _this.currentComponent.evtX;
-            var dy = evtpos.pageY - _this.currentComponent.evtY;
-
-            //console.log(evt);
-
-            _this.currentComponent.left += dx;
-            _this.currentComponent.top += dy;
-            _this.currentComponent.img.style.left = _this.currentComponent.left + 'px';
-            _this.currentComponent.img.style.top = _this.currentComponent.top + 'px';
+            //var dx = evtpos.pageX - _this.currentComponent.evtX;
+            //var dy = evtpos.pageY - _this.currentComponent.evtY;
+            //_this.currentComponent.left += dx;
+            //_this.currentComponent.top += dy;
+            //_this.currentComponent.img.style.left = _this.currentComponent.left + 'px';
+            //_this.currentComponent.img.style.top = _this.currentComponent.top + 'px';
+            _this.currentComponent.img.style.left = evtpos.pageX + 1 + 'px';//图片偏移一个单位，主要不让鼠标拖动的图片挡住指针，然后屏蔽jmCell上的hover事件
+            _this.currentComponent.img.style.top = evtpos.pageY + 'px';
             _this.currentComponent.evtX = evtpos.pageX;
             _this.currentComponent.evtY = evtpos.pageY;
-            //console.log('mouse move');
+            console.log('mouse move');
             return false;
         }
     });
@@ -406,6 +466,8 @@ jmEditor.prototype.initEvents = function () {
         if (_this.currentComponent) {
             //console.log("mouse up:"+evt);
             evt = evt || event;
+
+
             var pos = jmUtils.getElementPosition(_this.graph.canvas);
             var evtpos = jmUtils.getEventPosition(evt);
             if (evtpos.pageX >= pos.left && evtpos.pageX <= pos.left + _this.graph.canvas.width &&
@@ -413,7 +475,12 @@ jmEditor.prototype.initEvents = function () {
                 //获得拖动的组建类型
                 var componentindex = _this.currentComponent.img.getAttribute('data-component');
                 var option = _this.components[componentindex];
-                //中心定位到当前鼠标位置
+
+
+                if (option.value == "precondition") {
+                    console.log("hello 1");
+                }
+
                 var left = evtpos.pageX - pos.left;
                 var top = evtpos.pageY - pos.top;
                 if (option.width) {
@@ -684,6 +751,7 @@ jmEditor.prototype.regComponent = function (el, option) {
         el = tmp;
     }
     el.setAttribute('data-component', this.components.length - 1);
+    el.setAttribute("alt", option.value);
     var self = this;
 
     jmUtils.bindEvent(el, 'mousedown', function (evt) {
@@ -706,6 +774,8 @@ jmEditor.prototype.regComponent = function (el, option) {
         _this.currentComponent = {};
         _this.currentComponent.img = document.createElement('img');
         _this.currentComponent.img.setAttribute('data-component', target.getAttribute('data-component'));
+        _this.currentComponent.img.setAttribute('alt', target.getAttribute('alt'));
+
 
         //如果当前的不是img，就遍历子节点找到img
         if (target.tagName !== 'IMG') {
@@ -992,6 +1062,8 @@ jmEditor.prototype.toJSON = function () {
     };
     this.cells.each(function (i, cell) {
         var c = {outs: []};
+        c.preline = cell.preline.toString() || 0;
+        c.postline = cell.postline.toString() || 0;
         c.id = cell.id;
         c.position = cell.position();
         c.width = cell.width();

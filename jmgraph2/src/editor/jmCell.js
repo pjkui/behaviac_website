@@ -185,7 +185,31 @@ jmCell.prototype.create = function() {
 	});
 	this.setStyle(this.styleName);	
 }
+/**
+ * 添加preCondition
+ * @method addPrecondition
+ */
+jmCell.prototype.addPrecondition = function(){
+	this.preline = this.graph.createShape('line',{
+		start:{x: 2, y: 6},
+		end: {x: 98, y: 6}
+	});
+	this.preline.visible = true;
+	this.children.add(this.preline);
+}
 
+/**
+ * 添加preCondition
+ * @method addPostcondition
+ */
+jmCell.prototype.addPostcondition = function(){
+	this.postline = this.graph.createShape('line',{
+		start:{x: 2, y: 42},
+		end: {x: 98, y: 42}
+	});
+	this.postline.visible = true;
+	this.children.add(this.postline);
+}
 /**
  * 添加当前元素到画布中
  *
@@ -240,6 +264,10 @@ jmCell.prototype.add = function() {
 	});
 	this.bind("mouseleave",function(evt){
 		//console.log(evt+"mouseleave");
+	});
+	this.bind("mouseup",function(evt){
+		//console.log(this);
+
 	});
 	if(this.connectable) {		
 		this.bind('mousemove',function() {
