@@ -34,6 +34,8 @@
             <button id="btnZoomActual">复原</button>
             <button id="btnExpImage">导出为图片</button>
             <button id="btnLoad">加载数据</button>
+            <button id="btnWSocketOpen">打开Socket</button>
+            <button id="btnWSocketSend">发送数据</button>
         </td>
         <td></td>
     </tr>
@@ -383,6 +385,80 @@
         var strData = localStorage.getItem("data");
         editor.fromJSON(strData);
 //        console.log(strData);
+    }
+
+    btn = document.getElementById('btnWSocketOpen');
+    btn.onclick = function () {
+
+        if ("WebSocket" in window) {
+            console.log("WebSocket is supported by your Browser!");
+
+            if (editor.ws == null) {
+                // Let us open a web socket
+                editor.ws = new WebSocket("ws://127.0.0.1:8080");
+                console.log("打开连接");
+                this.innerText = "关闭连接"
+                editor.ws.onopen = function () {
+                    // Web Socket is connected, send data using send()
+//                this.ws.send("Message to send");
+                    console.log("Message is open");
+                };
+
+                editor.ws.onmessage = function (evt) {
+                    var received_msg = evt.data;
+                    console.log("Message From Server: " + received_msg);
+                };
+                editor.ws.onclose = function () {
+                    // websocket is closed.
+                    console.log("Connection is closed...");
+                };
+
+                editor.ws.sendMessage = function (msg) {
+                    editor.ws.waitForSocketConnection(editor.ws, function () {
+                       editor.ws.send(msg);
+                    });
+                };
+                editor.ws.waitForSocketConnection = function (socket, callback) {
+                    setTimeout(
+                            function () {
+                                if (socket.readyState === 1) {
+                                    if (callback !== undefined) {
+                                        callback();
+                                    }
+                                    return;
+                                } else {
+                                    editor.ws.waitForSocketConnection(socket, callback);
+                                }
+                            }, 5);
+                };
+            }
+            else {
+                editor.ws.close();
+                editor.ws = null;
+                console.log("关闭连接");
+                this.innerText = "打开连接";
+            }
+
+
+        }
+
+        else {
+            // The browser doesn't support WebSocket
+            alert("WebSocket NOT supported by your Browser!");
+        }
+
+    }
+    //发送数据
+    btn = document.getElementById('btnWSocketSend');
+    btn.onclick = function () {
+        if (editor.ws == null) {
+            document.getElementById('btnWSocketOpen').onclick();
+        }
+
+
+        var str = "asdd:" + Math.random() * 100;
+        console.log("send: " + str);
+        editor.ws.sendMessage(str);
     }
 
     btn = document.getElementById('btnundo');
