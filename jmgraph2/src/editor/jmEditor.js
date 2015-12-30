@@ -1061,9 +1061,12 @@ jmEditor.prototype.toJSON = function () {
         }
     };
     this.cells.each(function (i, cell) {
-        var c = {outs: []};
-        c.preline = cell.preline.toString() || 0;
-        c.postline = cell.postline.toString() || 0;
+        var c = {
+            outs: [],
+            preConditions: [],
+            postConditions: []
+        };
+
         c.id = cell.id;
         c.position = cell.position();
         c.width = cell.width();
@@ -1082,6 +1085,24 @@ jmEditor.prototype.toJSON = function () {
                         });
                 }
             });
+        }
+        if (cell.preConditions.length > 0) {
+            var length_ = cell.preConditions.length;
+            for (var i = 0; i < length_; i++) {
+                c.preConditions.push({value: cell.preConditions[i].value});
+            }
+            //cell.preConditions.each(function (j, cn) {
+            //    c.preConditions.push(
+            //        {
+            //            value: cn.value,
+            //        });
+            //});
+        }
+        if (cell.postConditions.length > 0) {
+            var length_ = cell.postConditions.length;
+            for (var i = 0; i < length_; i++) {
+                c.postConditions.push({value: cell.postConditions[i].value});
+            }
         }
         json.cells.push(c);
     })
@@ -1107,6 +1128,7 @@ jmEditor.prototype.fromJSON = function (json, s) {
         //从源中生成流程图的节点
         for (var i in json.cells) {
             var cell = json.cells[i];
+
             this.addCell(cell);
         }
         //循环所有节点，连接彼此的连线

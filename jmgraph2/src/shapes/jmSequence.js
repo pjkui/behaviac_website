@@ -179,30 +179,3 @@ jmSequence.prototype.radius = function (r) {
     return this.setValue('radius', r);
 }
 
-/**
- * 添加前置节点
- * @method addPrecondition
- */
-jmSequence.prototype.addPrecondition = function () {
-    // alert("add precondition suceess");
-    this.line = this.graph.createShape('line', {start: {x: 0, y: 6}, end: {x: 94, y: 6}});
-    //debugger;
-    this.children.add(this.line);
-
-    this.draw();
-    this.graph.refresh();
-}
-
-/**
- * 添加后置节点
- * @method addPostcondition
- */
-jmSequence.prototype.addPostcondition = function () {
-    var h = this.style.height -10;
-    this.line = this.graph.createShape('line', {start: {x: 0, y: h}, end: {x: 94, y: h}});
-    //debugger;
-    this.children.add(this.line);
-
-    this.draw();
-    this.graph.refresh();
-}

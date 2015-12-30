@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 
 </head>
+
 <body>
 
 <table>
@@ -32,6 +33,7 @@
             <button id="btnZoomIn">放大</button>
             <button id="btnZoomActual">复原</button>
             <button id="btnExpImage">导出为图片</button>
+            <button id="btnLoad">加载数据</button>
         </td>
         <td></td>
     </tr>
@@ -261,10 +263,10 @@
     style = jmUtils.clone(style);
     style.fill = '#90EE90';
     //style.stroke = 'rgb(248,195,60)';
-    style.resizable = true;
+    style.resizable = false;
     style.shape = 'rect';
-    editor.regStyle('subflow', style);
-    editor.regStyle('subflow_selected', style);
+    editor.regStyle('action', style);
+    editor.regStyle('action_selected', style);
 
     //指定顺序(Sequence)节点为方块。背景为90EE90,可以改变大小
     seq_style = jmUtils.clone(style);
@@ -327,61 +329,6 @@
     editor.regStyle('end_selected', endstyle);
 
 
-    //编辑器组件
-    var components = document.getElementById('components');
-
-    //		var startimg = editor.regComponent(images.start,{width:60,height:60,style:'start',value:'开始'});
-    //		var li = document.createElement('li');
-    //		li.appendChild(startimg);
-    //		components.appendChild(li);
-    //
-    //		var processimg = editor.regComponent(images.process,{width:100,height:80,style:'process',value:'process'});
-    //		li = document.createElement('li');
-    //		li.appendChild(processimg);
-    //		components.appendChild(li);
-    //
-    //		var subflowimg = editor.regComponent(images.subflow,{width:100,height:80,style:'subflow'});
-    //		li = document.createElement('li');
-    //		li.appendChild(subflowimg);
-    //		components.appendChild(li);
-    //
-    //		//顺序节点创建
-    //		var sequenceImg = editor.regComponent(images.sequence,{width:100,height:50,style:'seq',value:'Sequence'});
-    //		li = document.createElement('li');
-    //		li.appendChild(sequenceImg);
-    //		components.appendChild(li);
-    //
-    //		var forkimg = editor.regComponent(images.fork,{width:100,height:40,style:'fork'});
-    //		li = document.createElement('li');
-    //		li.appendChild(forkimg);
-    //		components.appendChild(li);
-    //
-    //		var joinimg = editor.regComponent(images.join,{width:100,height:50,style:'join'});
-    //		li = document.createElement('li');
-    //		li.appendChild(joinimg);
-    //		components.appendChild(li);
-    //
-    //		var switchimg = editor.regComponent(images['switch'],{width:100,height:50,style:'switch'});
-    //		li = document.createElement('li');
-    //		li.appendChild(switchimg);
-    //		components.appendChild(li);
-    //
-    //		var upimg = editor.regComponent(images['upload'],{width:100,height:50,style:'upload'});
-    //		li = document.createElement('li');
-    //		li.appendChild(upimg);
-    //		components.appendChild(li);
-    //
-    //		var downimg = editor.regComponent(images['download'],{width:100,height:50,style:'download'});
-    //		li = document.createElement('li');
-    //		li.appendChild(downimg);
-    //		components.appendChild(li);
-    //
-    //		var endimg = editor.regComponent(images.end,{width:60,height:60,style:'end',value:'结束'});
-    //		li = document.createElement('li');
-    //		li.appendChild(endimg);
-    //		components.appendChild(li);
-
-
     //工具按钮事件
     var btn = document.getElementById('btnZoomOut');
     btn.onclick = function () {
@@ -425,7 +372,17 @@
     btn.onclick = function () {
         document.getElementById('expimage').src = editor.toImage();
         document.getElementById('expimagearea').style.display = 'inline';
-        document.getElementById('json').innerHTML = editor.toJSON().toString();
+        var strData = editor.toJSON().toString();
+        document.getElementById('json').innerHTML = strData;
+        localStorage.setItem("data", strData)
+    }
+
+    btn = document.getElementById('btnLoad');
+    btn.onclick = function () {
+
+        var strData = localStorage.getItem("data");
+        editor.fromJSON(strData);
+//        console.log(strData);
     }
 
     btn = document.getElementById('btnundo');
@@ -438,54 +395,43 @@
         editor.execute('redo');
     }
 
-    //手动创建节点
-    var startcell = editor.addCell({position: {x: 20, y: 210}, width: 60, height: 60, style: 'start', value: '开始'});
-    var cell1 = editor.addCell({position: {x: 140, y: 210}, width: 100, height: 60, style: 'process'});
-    cell1.value('test cell');
-
-    startcell.connect(cell1);
-
-    var cell2 = editor.addCell({position: {x: 400, y: 210}, width: 100, height: 100, style: 'subflow', value: '默认值'});
-    //手动连接二个节点
-    cell1.connect(cell2, null, '连线');
-
-    var sequenceCell1 = editor.addCell({
-        position: {x: 600, y: 140},
-        width: 100,
-        height: 50,
-        style: 'seq',
-        value: 'Sequence'
-    });
-    cell2.connect(sequenceCell1);
-
-    var sequenceCell2 = editor.addCell({
-        position: {x: 600, y: 210},
-        width: 100,
-        height: 50,
-        style: 'seq',
-        value: 'Sequence'
-    });
-    cell2.connect(sequenceCell2);
-
-    var sequenceCell3 = editor.addCell({
-        position: {x: 600, y: 280},
-        width: 100,
-        height: 50,
-        style: 'seq',
-        value: 'Sequence'
-    });
-    cell2.connect(sequenceCell3);
-
-    var cell3 = editor.addCell({position: {x: 800, y: 350}, width: 100, height: 100, style: 'subflow'});
-    //设置图标标识
-    cell3.setOverlay('images/running.gif', 30, 30, '运行中...');
-
-    var endcell = editor.addCell({position: {x: 800, y: 210}, width: 60, height: 60, style: 'end', value: '结束'});
-    //		sequenceCell1.connect(endcell);
-    sequenceCell1.connect(endcell);
-    sequenceCell2.connect(endcell);
-    sequenceCell3.connect(endcell);
-    editor.graph.refresh();
+    //    //手动创建节点
+    //    var startcell = editor.addCell({position: {x: 20, y: 210}, width: 100, height: 50, style: 'start', value: 'Agent'});
+    //    var cell1 = editor.addCell({position: {x: 200, y: 210}, width: 100, height: 50, style: 'seq'});
+    //    cell1.value('Sequence');
+    //
+    //    startcell.connect(cell1);
+    //
+    //    var cell2 = editor.addCell({position: {x: 400, y: 210}, width: 100, height: 50, style: 'seq', value: 'Sequence'});
+    //    //手动连接二个节点
+    //    cell1.connect(cell2, null, '连线');
+    //
+    //    var sequenceCell1 = editor.addCell({
+    //        position: {x: 600, y: 140},
+    //        width: 100,
+    //        height: 50,
+    //        style: 'action',
+    //        value: '动作1'
+    //    });
+    //    cell2.connect(sequenceCell1);
+    //
+    //    var sequenceCell2 = editor.addCell({
+    //        position: {x: 600, y: 210},
+    //        width: 100,
+    //        height: 50,
+    //        style: 'action',
+    //        value: '动作2'
+    //    });
+    //    cell2.connect(sequenceCell2);
+    //
+    //    var sequenceCell3 = editor.addCell({
+    //        position: {x: 600, y: 280},
+    //        width: 100,
+    //        height: 50,
+    //        style: 'action',
+    //        value: '动作3'
+    //    });
+    //    cell2.connect(sequenceCell3);
 
     /*
      //把画图信息转为json对象便于保存
@@ -493,6 +439,9 @@
      //从json数据恢复原画
      editor.fromJSON('{"cells":[{"outs":[{"id":3,"to":2,"from":1}],"id":1,"position":{"x":106,"y":25},"width":60,"height":60,"style":"start","value":"开始"},{"outs":[{"id":9,"to":4,"from":2}],"id":2,"position":{"x":315,"y":60},"width":161,"height":66,"style":"process","value":"test cell"},{"outs":[{"id":11,"to":5,"from":4},{"id":17,"to":15,"from":4}],"id":4,"position":{"x":41,"y":156},"width":100,"height":80,"style":"subflow","value":""},{"outs":[{"id":10,"to":5,"from":5},{"id":12,"to":7,"from":5}],"id":5,"position":{"x":106,"y":323},"width":100,"height":50,"style":"join","value":""},{"outs":[],"id":6,"position":{"x":495,"y":416},"width":60,"height":60,"style":"end","value":"结束"},{"outs":[{"id":13,"to":8,"from":7}],"id":7,"position":{"x":154,"y":448},"width":100,"height":50,"style":"upload","value":""},{"outs":[{"id":14,"to":6,"from":8}],"id":8,"position":{"x":284,"y":315},"width":100,"height":50,"style":"download","value":""},{"outs":[{"id":18,"to":16,"from":15}],"id":15,"position":{"x":328,"y":172},"width":100,"height":80,"style":"subflow","value":""},{"outs":[{"id":19,"to":6,"from":16}],"id":16,"position":{"x":463,"y":241},"width":100,"height":80,"style":"process","value":"process"}]}');
      */
+
+    editor.fromJSON('{"cells":[{"outs":[{"id":3,"to":2,"from":1}],"preConditions":[],"postConditions":[],"id":1,"position":{"x":20,"y":210},"width":100,"height":50,"style":"start","value":"Agent"},{"outs":[{"id":5,"to":4,"value":"连线","from":2}],"preConditions":[{"value":"preData_0"},{"value":"preData_1"},{"value":"preData_2"}],"postConditions":[{"value":"postData_0"}],"id":2,"position":{"x":200,"y":210},"width":100,"height":50,"style":"seq","value":"Sequence"},{"outs":[{"id":7,"to":6,"from":4},{"id":9,"to":8,"from":4},{"id":11,"to":10,"from":4}],"preConditions":[{"value":"preData_0"}],"postConditions":[],"id":4,"position":{"x":400,"y":210},"width":100,"height":50,"style":"seq","value":"Sequence"},{"outs":[],"preConditions":[{"value":"preData_0"}],"postConditions":[{"value":"postData_0"}],"id":6,"position":{"x":600,"y":140},"width":100,"height":50,"style":"action","value":"动作1"},{"outs":[],"preConditions":[],"postConditions":[],"id":8,"position":{"x":600,"y":210},"width":100,"height":50,"style":"action","value":"动作2"},{"outs":[],"preConditions":[],"postConditions":[],"id":10,"position":{"x":600,"y":280},"width":100,"height":50,"style":"action","value":"动作3"}]}');
+    editor.graph.refresh();
     //元素上的右健菜单
     editor.graph.bind('mouseup', function (evt) {
         var menus = editor.menus();
@@ -503,7 +452,7 @@
             var cell = evt.target.type == 'jmCell' ? evt.target : evt.target.findParent('jmCell');
             if (cell) {
                 menus.add('属性', function () {
-                    alert(evt.target.value+" pos:"+evt.target.position().x+","+evt.target.position().y);
+                    alert(evt.target.value + " pos:" + evt.target.position().x + "," + evt.target.position().y);
                     console.log(evt);
                 }).show();
                 return false;
@@ -598,6 +547,9 @@
         }
         editor.graph.refresh();//刷新画布
     });
+
+    //编辑器组件
+    var components = document.getElementById('components');
     var nodesData = null;
     jQuery.ajax({
         url: "../src/nodes.json", //This URL is for Json file
@@ -643,7 +595,8 @@
                     width: 100,
                     height: 50,
                     style: datas[d].style.shape,
-                    value: datas[d].name
+                    value: datas[d].value,
+                    name: datas[d].name
                 });
                 li.appendChild(forkimg);
                 li.appendChild(document.createTextNode(datas[d].name));
