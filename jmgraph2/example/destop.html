@@ -13,130 +13,143 @@
 
 </head>
 
-<body>
-<div class="easyui-layout" style="width:100%;height:1000px;">
-    <div data-options="region:'north'" style="height:50px">
-        <div class="easyui-panel" style="padding:0px;">
-            <a href="#" class="easyui-linkbutton" data-options="plain:true">首页</a>
-            <a href="#" class="easyui-menubutton" data-options="menu:'#mm5',iconCls:'icon-save'">文件</a>
-            <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">编辑</a>
-            <a href="#" class="easyui-menubutton" data-options="menu:'#mm6'">视图</a>
-            <a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-help'">帮助</a>
-            <a href="#" class="easyui-menubutton" data-options="menu:'#mm4',iconCls:'icon-ok'">运行</a>
-            <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">About</a>
-        </div>
-        <div id="mm1" style="width:150px;">
-            <div data-options="iconCls:'icon-undo'" id="btnundo">Undo</div>
-            <div data-options="iconCls:'icon-redo'" id="btnredo">Redo</div>
-            <div class="menu-sep"></div>
-            <div>Cut</div>
-            <div>Copy</div>
-            <div>Paste</div>
-            <div class="menu-sep"></div>
-            <div>
-                <span>Toolbar</span>
-                <div style="width:150px;">
-                    <div>Address</div>
-                    <div>Link</div>
-                    <div>Navigation Toolbar</div>
-                    <div>Bookmark Toolbar</div>
-                    <div class="menu-sep"></div>
-                    <div>New Toolbar...</div>
-                </div>
+<body class="easyui-layout">
+
+<div data-options="region:'north'" style="height:50px">
+    <div class="easyui-panel" style="padding:0px; width: 100%;">
+        <a href="#" class="easyui-linkbutton" data-options="plain:true">首页</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm5',iconCls:'icon-save'">文件</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">编辑</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm6'">视图</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-help'">帮助</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm4',iconCls:'icon-ok'">运行</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">About</a>
+    </div>
+
+    <div id="mm1" style="width:150px;">
+        <div data-options="iconCls:'icon-undo'" id="btnundo">Undo</div>
+        <div data-options="iconCls:'icon-redo'" id="btnredo">Redo</div>
+        <div class="menu-sep"></div>
+        <div>Cut</div>
+        <div>Copy</div>
+        <div>Paste</div>
+        <div class="menu-sep"></div>
+        <div>
+            <span>Toolbar</span>
+            <div style="width:150px;">
+                <div>Address</div>
+                <div>Link</div>
+                <div>Navigation Toolbar</div>
+                <div>Bookmark Toolbar</div>
+                <div class="menu-sep"></div>
+                <div>New Toolbar...</div>
             </div>
-            <div data-options="iconCls:'icon-remove'">Delete</div>
-            <div>Select All</div>
         </div>
-        <div id="mm2" style="width:100px;">
-            <div>Help</div>
-            <div>Update</div>
-            <div>About</div>
-        </div>
-        <div id="mm3" class="menu-content" style="background:#f0f0f0;padding:0px;text-align:left;width: 400px;">
-            <img src="http://www.behaviac.com/img/logo-2x.png" style="width:50px;height:50px">
-            <p style="font-size:14px;color:#444;">腾讯出品游戏AI组件 <br>2015年12月31日</p>
-        </div>
-        <div id="mm4" style="width:150px;">
-            <div id="btnWSocketOpen">打开Web Socket</div>
-            <div id="btnWSocketSend">发送数据</div>
-        </div>
-        <div id="mm5" style="width:150px;">
-            <div id="btnExpImage">导出为图片</div>
-            <div id="btnSaveData">保存数据</div>
-            <div id="btnLoad">加载数据</div>
-        </div>
-        <div id="mm6" style="width:150px;">
-            <div id="btnZoomOut">缩小</div>
-            <div id="btnZoomIn">放大</div>
-            <div id="btnZoomActual">复原</div>
-            <div class="menu-sep"></div>
-            <div id="btnLeft">左对齐</div>
-            <div id="btnCenter">水平居中</div>
-            <div id="btnRight">右对齐</div>
-            <div id="btnTop">顶部对齐</div>
-            <div id="btnMiddle">垂直居中</div>
-            <div id="btnBottom">底部对齐</div>
+        <div data-options="iconCls:'icon-remove'">Delete</div>
+        <div>Select All</div>
+        <div class="menu-sep"></div>
+        <div href="javascript:void(0)" onclick="$('#dlgSearch').dialog('open')">查找</div>
+    </div>
+    <div id="mm2" style="width:100px;">
+        <div>Help</div>
+        <div>Update</div>
+        <div>About</div>
+    </div>
+    <div id="mm3" class="menu-content" style="background:#f0f0f0;padding:0px;text-align:left;width: 400px;">
+        <img src="http://www.behaviac.com/img/logo-2x.png" style="width:50px;height:50px">
+        <p style="font-size:14px;color:#444;">腾讯出品游戏AI组件 <br>2015年12月31日</p>
+    </div>
+    <div id="mm4" style="width:150px;">
+        <div id="btnWSocketOpen">打开Web Socket连接</div>
+        <div id="btnWSocketSend">发送数据</div>
+    </div>
+    <div id="mm5" style="width:150px;">
+        <div id="btnExpImage">导出为图片</div>
+        <div id="btnSaveData">保存数据</div>
+        <div id="btnLoad">加载数据</div>
+    </div>
+    <div id="mm6" style="width:150px;">
+        <div id="btnZoomOut">缩小</div>
+        <div id="btnZoomIn">放大</div>
+        <div id="btnZoomActual">复原</div>
+        <div class="menu-sep"></div>
+        <div id="btnLeft">左对齐</div>
+        <div id="btnCenter">水平居中</div>
+        <div id="btnRight">右对齐</div>
+        <div id="btnTop">顶部对齐</div>
+        <div id="btnMiddle">垂直居中</div>
+        <div id="btnBottom">底部对齐</div>
+    </div>
+    <div id="dlgSearch" class="easyui-dialog" title="查找" data-options="iconCls:'icon-search',closed:true"
+         style="width:400px;height:200px;padding:10px;">
+        <input class="easyui-searchbox" data-options="prompt:'Please Input Value',searcher:doSearch"
+               style="width:300px;"/>
+        <script>
+            function doSearch(value) {
+                alert('You input: ' + value);
+            }
+        </script>
+    </div>
+
+</div>
+<div data-options="region:'east',split:true" title="属性" style="width:200px;">
+    <label for="txtname">名称:</label><input id="txtname" name="txtname" type="text"/>
+    <br/>
+    <label for="txtdes">说明:</label><input id="txtdes" name="txtdes" type="text"/>
+</div>
+<div data-options="region:'west',split:true" title="" style="width:230px;">
+    <div class="easyui-accordion" data-options="multiple:true" style="width:202px;">
+        <div title="工作区" data-options="" style="overflow:auto;padding:0px;">
+            <ul class="easyui-tree">
+                <li>
+                    <span>项目文件</span>
+                    <ul>
+                        <li data-options="state:'closed'">
+                            <span>Behaviac</span>
+                            <ul>
+                                <li>
+                                    <span>Friend</span>
+                                </li>
+                                <li>
+                                    <span>Wife</span>
+                                </li>
+                                <li>
+                                    <span>Company</span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li data-options="state:'closed'">
+                            <span>Prefabs</span>
+                            <ul>
+                                <li>Intel</li>
+                                <li>Java</li>
+                                <li>Microsoft Office</li>
+                                <li>Games</li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
         </div>
 
-    </div>
-    <div data-options="region:'east',split:true" title="属性" style="width:200px;" class="easyui-draggable" >
-        <label for="txtname">名称:</label><input id="txtname" name="txtname" type="text"/>
-        <br/>
-        <label for="txtdes">说明:</label><input id="txtdes" name="txtdes" type="text"/>
-    </div>
-    <div data-options="region:'west',split:true" title="节点" style="width:200px;">
-        <ul id="components">
+        <div title="节点" style="padding:0px;" data-options="selected:true">
 
-        </ul>
-    </div>
-    <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+            <ul id="components">
 
-        <div id="container">
+            </ul>
         </div>
-    </div>
-    <div data-options="region:'south',split:true" style="height:200px;">
-        <div id="json"></div>
     </div>
 </div>
+<div data-options="region:'center',title:'',iconCls:'icon-ok'">
+    <div id="container">
+    </div>
+</div>
+<div data-options="region:'south',split:true" style="height:200px;">
+    <div id="json"></div>
+</div>
 
-<!--<table>-->
-    <!--&lt;!&ndash;<tr>&ndash;&gt;-->
-        <!--&lt;!&ndash;<td class="first"></td>&ndash;&gt;-->
-        <!--&lt;!&ndash;<td>&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnundo">撤消</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnredo">重复</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnZoomOut">缩小</button>&ndash;&gt;&ndash;&gt;-->
 
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnLeft">左对齐</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnCenter">水平居中</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnRight">右对齐</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnTop">顶部对齐</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnMiddle">垂直居中</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnBottom">底部对齐</button>&ndash;&gt;&ndash;&gt;-->
-
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnZoomIn">放大</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnZoomActual">复原</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnExpImage">导出为图片</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnLoad">加载数据</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnWSocketOpen">打开Socket</button>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnWSocketSend">发送数据</button>&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-        <!--&lt;!&ndash;<td></td>&ndash;&gt;-->
-    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
-    <!--<tr>-->
-        <!--<td class="first components ">-->
-            <!--&lt;!&ndash;<ul id="components">&ndash;&gt;-->
-
-            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-        <!--</td>-->
-        <!--<td>-->
-
-        <!--</td>-->
-        <!--<td style="vertical-align:top;">-->
-
-        <!--</td>-->
-    <!--</tr>-->
-<!--</table>-->
 <div id="expimagearea" style="display:none;">
     <div style="position:relative; height:60px;">
         <a href="#" style="position:fixed;"
@@ -180,7 +193,7 @@
 
     #container {
         margin: 0 auto;
-        border: 1px solid #000;
+        border: none;
         background-color: #fff;
         background: url('images/grid.png');
     }
@@ -237,543 +250,558 @@
 
 <script type="text/javascript" src="images.js"></script>
 <script type="text/javascript">
-
-    //	var canvasH = $("#container").height();
-    //	var canvasW = $("#container").width();
-    //初始化编辑器
-    var editor = new jmEditor({
-        container: 'container',
-        width: 1024,
-        height: 600,
-        enabled: true,//可以编辑
-        connectable: true,//可以连线
-        movable: true,//可以移动元素
-        resizable: true//可以改变元素大小
-    });
-
-    //if(editor.graph.isSupportedBrowser() == false) {
-    //	alert('不支持的浏览器');
-    //	return;
-    //}
-
-    //生成渐变背景
-    var bg = editor.graph.createLinearGradient(0, 0, 0, '100%');
-    bg.addColorStop(0, '#43F589');
-    bg.addColorStop(0.5, '#0FA248');
-    bg.addColorStop(1, '#43F589');
-    var style = {
-        stroke: '#000',
-        fill: bg,//指定默认背景为渐变
-        lineWidth: 3,
-        close: true,
-        lineJoin: 'round',
-        radius: 6,
-        resizable: true,//默认元素可以放大缩小
-        zIndex: 1000
-    };
-    //设定连线样式
-    style.connectLine = {
-        stroke: 'black',
-        normalStroke: 'black',
-        overStroke: 'red',
-        selectedStroke: 'red',
-        lineWidth: 4,
-        zIndex: 100,
-        //连线上文件的颜色
-        fontStyle: {
-            fill: 'green',
-            textAlign: 'center'
+    $.parser.onComplete = function () {
+        console.log("easyUI parse finished!");
+        container = document.getElementById("container")
+        canvasH = container.clientHeight - 2;
+        canvasW = container.clientWidth - 2;
+        if (canvasH < 600) {
+            canvasH = 600;
         }
-    };
-    //设定边框样式，用于放大缩小拖放框
-    style.borderStyle = {
-        stroke: '#3BDB05',
-        //fill:'transparent',
-        rectStroke: '#3BDB05',//放大缩小小方块颜色
-        close: true
-    };
-    //指定阴影
-    style.shadow = editor.graph.createShadow(0, 0, 10, '#000');
-
-
-    //字体样式
-    style.fontStyle = {
-        fill: 'blue',
-        textAlign: 'center',
-        textBaseline: 'middle',//垂直居中
-        font: '14px 微软雅黑'
-    };
-
-    //状态小图标样式
-    style.overlay = {
-        margin: {
-            left: 10,
-            top: 10
+        if (canvasW < 800) {
+            canvasW = 800;
         }
-    };
+        //初始化编辑器
+        var editor = new jmEditor({
+            container: 'container',
+            width: canvasW,
+            height: canvasH,
+            enabled: true,//可以编辑
+            connectable: true,//可以连线
+            movable: true,//可以移动元素
+            resizable: true//可以改变元素大小
+        });
 
-    //指定进程图为一个圆
-    style.shape = 'arc';
-    editor.regStyle('process', style);
-    //复制一个进程选择样式
-    var processselectedstyle = jmUtils.clone(style);
-    //注册选择状态
-    processselectedstyle.fill = 'red';
-    editor.regStyle('process_selected', processselectedstyle);
+        //if(editor.graph.isSupportedBrowser() == false) {
+        //	alert('不支持的浏览器');
+        //	return;
+        //}
 
-    //指定条件图形为一个棱形
-    style = jmUtils.clone(style);
-    style.shape = 'prismatic';
-    editor.regStyle('switch', style);
-    //没有改变选中状态样式
-    editor.regStyle('switch_selected', style);
-
-    //指定fork元素为方块。背景为:#000
-    style = jmUtils.clone(style);
-    style.fill = '#000';
-    style.resizable = false;//锁定其不让改变大小
-    style.shape = 'rect';
-    editor.regStyle('fork', style);
-    editor.regStyle('fork_selected', style);
-    //指定join为一个椭圆,样式续承自fork
-    style = jmUtils.clone(style);
-    style.shape = 'arc';
-    editor.regStyle('join', style);
-    editor.regStyle('join_selected', style);
-
-    //指定子流程为方块。背景为90EE90,可以改变大小
-    style = jmUtils.clone(style);
-    style.fill = '#90EE90';
-    //style.stroke = 'rgb(248,195,60)';
-    style.resizable = false;
-    style.shape = 'rect';
-    editor.regStyle('action', style);
-    editor.regStyle('action_selected', style);
-
-    //指定顺序(Sequence)节点为方块。背景为90EE90,可以改变大小
-    seq_style = jmUtils.clone(style);
-    seq_style.fill = '#FFFF00';
-    seq_style.shape = 'sequence';
-    seq_style.width = 130;
-    seq_style.height = 50;
-    seq_style.resizable = false;
-    editor.regStyle('seq', seq_style);
-    seq_style_select = jmUtils.clone(seq_style);
-    seq_style_select.fill = '#CCCC00'
-    editor.regStyle('seq_selected', seq_style_select);
-
-    //指定顺序(fusiformis)节点为方块。背景为90EE90,可以改变大小
-    fusiformis_style = jmUtils.clone(style);
-    fusiformis_style.fill = '#FFFF00';
-    fusiformis_style.shape = 'fusiformis';
-    fusiformis_style.width = 130;
-    fusiformis_style.height = 50;
-    fusiformis_style.resizable = false;
-    editor.regStyle('fusiformis', fusiformis_style);
-    fusiformis_style_select = jmUtils.clone(fusiformis_style);
-    fusiformis_style_select.fill = '#CCCC00'
-    editor.regStyle('fusiformis_selected', fusiformis_style_select);
+        //生成渐变背景
+        var bg = editor.graph.createLinearGradient(0, 0, 0, '100%');
+        bg.addColorStop(0, '#43F589');
+        bg.addColorStop(0.5, '#0FA248');
+        bg.addColorStop(1, '#43F589');
+        var style = {
+            stroke: '#000',
+            fill: bg,//指定默认背景为渐变
+            lineWidth: 3,
+            close: true,
+            lineJoin: 'round',
+            radius: 6,
+            resizable: true,//默认元素可以放大缩小
+            zIndex: 1000
+        };
+        //设定连线样式
+        style.connectLine = {
+            stroke: 'black',
+            normalStroke: 'black',
+            overStroke: 'red',
+            selectedStroke: 'red',
+            lineWidth: 4,
+            zIndex: 100,
+            //连线上文件的颜色
+            fontStyle: {
+                fill: 'green',
+                textAlign: 'center'
+            }
+        };
+        //设定边框样式，用于放大缩小拖放框
+        style.borderStyle = {
+            stroke: '#3BDB05',
+            //fill:'transparent',
+            rectStroke: '#3BDB05',//放大缩小小方块颜色
+            close: true
+        };
+        //指定阴影
+        style.shadow = editor.graph.createShadow(0, 0, 10, '#000');
 
 
-    //上传文件样式为一张图片
-    style = jmUtils.clone(style);
-    style.resizable = true;
-    style.shape = 'img';
-    style.width = 120;
-    style.height = 80;
-    style.image = images.upload;
-    editor.regStyle('upload', style);
-    editor.regStyle('upload-selected', style);
-    //下载文件
-    style = jmUtils.clone(style);
-    style.image = images.download;
-    editor.regStyle('download', style);
-    editor.regStyle('download-selected', style);
+        //字体样式
+        style.fontStyle = {
+            fill: 'blue',
+            textAlign: 'center',
+            textBaseline: 'middle',//垂直居中
+            font: '14px 微软雅黑'
+        };
 
-    //开始样式,不可改变大小，背景透明
-    var startstyle = jmUtils.clone(style);
-    //startstyle.fill = 'transparent';
-    startstyle.resizable = false;
-    startstyle.shape = 'arc';
-    editor.regStyle('start', startstyle);
-    editor.regStyle('start_selected', startstyle);
+        //状态小图标样式
+        style.overlay = {
+            margin: {
+                left: 10,
+                top: 10
+            }
+        };
 
-    //结束样式
-    var endstyle = jmUtils.clone(startstyle);
-    endstyle.close = true;
-    endstyle.lineWidth = 1;
-    endstyle.connectable = false;
-    endstyle.fill = '#64D381';
-    endstyle.shape = 'harc';
-    endstyle.maxRadius = 30;
-    endstyle.minRadius = 20;
-    editor.regStyle('end', endstyle);
-    editor.regStyle('end_selected', endstyle);
+        //指定进程图为一个圆
+        style.shape = 'arc';
+        editor.regStyle('process', style);
+        //复制一个进程选择样式
+        var processselectedstyle = jmUtils.clone(style);
+        //注册选择状态
+        processselectedstyle.fill = 'red';
+        editor.regStyle('process_selected', processselectedstyle);
+
+        //指定条件图形为一个棱形
+        style = jmUtils.clone(style);
+        style.shape = 'prismatic';
+        editor.regStyle('switch', style);
+        //没有改变选中状态样式
+        editor.regStyle('switch_selected', style);
+
+        //指定fork元素为方块。背景为:#000
+        style = jmUtils.clone(style);
+        style.fill = '#000';
+        style.resizable = false;//锁定其不让改变大小
+        style.shape = 'rect';
+        editor.regStyle('fork', style);
+        editor.regStyle('fork_selected', style);
+        //指定join为一个椭圆,样式续承自fork
+        style = jmUtils.clone(style);
+        style.shape = 'arc';
+        editor.regStyle('join', style);
+        editor.regStyle('join_selected', style);
+
+        //指定子流程为方块。背景为90EE90,可以改变大小
+        style = jmUtils.clone(style);
+        style.fill = '#90EE90';
+        //style.stroke = 'rgb(248,195,60)';
+        style.resizable = false;
+        style.shape = 'rect';
+        editor.regStyle('action', style);
+        editor.regStyle('action_selected', style);
+
+        //指定顺序(Sequence)节点为方块。背景为90EE90,可以改变大小
+        seq_style = jmUtils.clone(style);
+        seq_style.fill = '#FFFF00';
+        seq_style.shape = 'sequence';
+        seq_style.width = 130;
+        seq_style.height = 50;
+        seq_style.resizable = false;
+        editor.regStyle('seq', seq_style);
+        seq_style_select = jmUtils.clone(seq_style);
+        seq_style_select.fill = '#CCCC00'
+        editor.regStyle('seq_selected', seq_style_select);
+
+        //指定顺序(fusiformis)节点为方块。背景为90EE90,可以改变大小
+        fusiformis_style = jmUtils.clone(style);
+        fusiformis_style.fill = '#FFFF00';
+        fusiformis_style.shape = 'fusiformis';
+        fusiformis_style.width = 130;
+        fusiformis_style.height = 50;
+        fusiformis_style.resizable = false;
+        editor.regStyle('fusiformis', fusiformis_style);
+        fusiformis_style_select = jmUtils.clone(fusiformis_style);
+        fusiformis_style_select.fill = '#CCCC00'
+        editor.regStyle('fusiformis_selected', fusiformis_style_select);
 
 
-    //工具按钮事件
-    var btn = document.getElementById('btnZoomOut');
-    btn.onclick = function () {
-        editor.execute('zoomOut');
-    }
-    btn = document.getElementById('btnZoomIn');
-    btn.onclick = function () {
-        editor.execute('zoomIn');
-    }
-    btn = document.getElementById('btnZoomActual');
-    btn.onclick = function () {
-        editor.execute('zoomActual');
-    }
+        //上传文件样式为一张图片
+        style = jmUtils.clone(style);
+        style.resizable = true;
+        style.shape = 'img';
+        style.width = 120;
+        style.height = 80;
+        style.image = images.upload;
+        editor.regStyle('upload', style);
+        editor.regStyle('upload-selected', style);
+        //下载文件
+        style = jmUtils.clone(style);
+        style.image = images.download;
+        editor.regStyle('download', style);
+        editor.regStyle('download-selected', style);
 
-    btn = document.getElementById('btnLeft');
-    btn.onclick = function () {
-        editor.align('left');
-    }
-    btn = document.getElementById('btnCenter');
-    btn.onclick = function () {
-        editor.align('center');
-    }
-    btn = document.getElementById('btnRight');
-    btn.onclick = function () {
-        editor.align('right');
-    }
-    btn = document.getElementById('btnTop');
-    btn.onclick = function () {
-        editor.align('top');
-    }
-    btn = document.getElementById('btnMiddle');
-    btn.onclick = function () {
-        editor.align('middle');
-    }
-    btn = document.getElementById('btnBottom');
-    btn.onclick = function () {
-        editor.align('bottom');
-    }
+        //开始样式,不可改变大小，背景透明
+        var startstyle = jmUtils.clone(style);
+        //startstyle.fill = 'transparent';
+        startstyle.resizable = false;
+        startstyle.shape = 'arc';
+        editor.regStyle('start', startstyle);
+        editor.regStyle('start_selected', startstyle);
 
-    btn = document.getElementById('btnExpImage');
-    btn.onclick = function () {
-        document.getElementById('expimage').src = editor.toImage();
-        document.getElementById('expimagearea').style.display = 'inline';
-        var strData = editor.toJSON().toString();
-        document.getElementById('json').innerHTML = strData;
-        localStorage.setItem("data", strData)
-    }
+        //结束样式
+        var endstyle = jmUtils.clone(startstyle);
+        endstyle.close = true;
+        endstyle.lineWidth = 1;
+        endstyle.connectable = false;
+        endstyle.fill = '#64D381';
+        endstyle.shape = 'harc';
+        endstyle.maxRadius = 30;
+        endstyle.minRadius = 20;
+        editor.regStyle('end', endstyle);
+        editor.regStyle('end_selected', endstyle);
 
-    btn = document.getElementById('btnLoad');
-    btn.onclick = function () {
 
-        var strData = localStorage.getItem("data");
-        editor.fromJSON(strData);
+        //工具按钮事件
+        var btn = document.getElementById('btnZoomOut');
+        btn.onclick = function () {
+            editor.execute('zoomOut');
+        }
+        btn = document.getElementById('btnZoomIn');
+        btn.onclick = function () {
+            editor.execute('zoomIn');
+        }
+        btn = document.getElementById('btnZoomActual');
+        btn.onclick = function () {
+            editor.execute('zoomActual');
+        }
+
+        btn = document.getElementById('btnLeft');
+        btn.onclick = function () {
+            editor.align('left');
+        }
+        btn = document.getElementById('btnCenter');
+        btn.onclick = function () {
+            editor.align('center');
+        }
+        btn = document.getElementById('btnRight');
+        btn.onclick = function () {
+            editor.align('right');
+        }
+        btn = document.getElementById('btnTop');
+        btn.onclick = function () {
+            editor.align('top');
+        }
+        btn = document.getElementById('btnMiddle');
+        btn.onclick = function () {
+            editor.align('middle');
+        }
+        btn = document.getElementById('btnBottom');
+        btn.onclick = function () {
+            editor.align('bottom');
+        }
+
+        btn = document.getElementById('btnExpImage');
+        btn.onclick = function () {
+            document.getElementById('expimage').src = editor.toImage();
+            document.getElementById('expimagearea').style.display = 'inline';
+            var strData = editor.toJSON().toString();
+            document.getElementById('json').innerHTML = strData;
+            localStorage.setItem("data", strData)
+        }
+
+        btn = document.getElementById("btnSaveData");
+        btn.onclick = function () {
+            var strData = editor.toJSON().toString();
+            document.getElementById('json').innerHTML = strData;
+            localStorage.setItem("data", strData)
+        }
+
+        btn = document.getElementById('btnLoad');
+        btn.onclick = function () {
+
+            var strData = localStorage.getItem("data");
+            editor.fromJSON(strData);
 //        console.log(strData);
-    }
+        }
 
-    btn = document.getElementById('btnWSocketOpen');
-    btn.onclick = function () {
+        btn = document.getElementById('btnWSocketOpen');
+        btn.onclick = function () {
 
-        if ("WebSocket" in window) {
-            console.log("WebSocket is supported by your Browser!");
+            if ("WebSocket" in window) {
+                console.log("WebSocket is supported by your Browser!");
 
-            if (editor.ws == null) {
-                // Let us open a web socket
-                editor.ws = new WebSocket("ws://127.0.0.1:8080");
-                console.log("打开连接");
-                this.innerText = "关闭连接"
-                editor.ws.onopen = function () {
-                    // Web Socket is connected, send data using send()
+                if (editor.ws == null) {
+                    // Let us open a web socket
+                    editor.ws = new WebSocket("ws://127.0.0.1:8080");
+                    console.log("打开连接");
+                    this.childNodes[0].innerText = "关闭WebSocket连接"
+                    editor.ws.onopen = function () {
+                        // Web Socket is connected, send data using send()
 //                this.ws.send("Message to send");
-                    console.log("Message is open");
-                };
+                        console.log("Message is open");
+                    };
 
-                editor.ws.onmessage = function (evt) {
-                    var received_msg = evt.data;
-                    console.log("Message From Server: " + received_msg);
-                };
-                editor.ws.onclose = function () {
-                    // websocket is closed.
-                    console.log("Connection is closed...");
-                };
+                    editor.ws.onmessage = function (evt) {
+                        var received_msg = evt.data;
+                        console.log("Message From Server: " + received_msg);
+                    };
+                    editor.ws.onclose = function () {
+                        // websocket is closed.
+                        console.log("Connection is closed...");
+                    };
 
-                editor.ws.sendMessage = function (msg) {
-                    editor.ws.waitForSocketConnection(editor.ws, function () {
-                        editor.ws.send(msg);
-                    });
-                };
-                editor.ws.waitForSocketConnection = function (socket, callback) {
-                    setTimeout(
-                            function () {
-                                if (socket.readyState === 1) {
-                                    if (callback !== undefined) {
-                                        callback();
+                    editor.ws.sendMessage = function (msg) {
+                        editor.ws.waitForSocketConnection(editor.ws, function () {
+                            editor.ws.send(msg);
+                        });
+                    };
+                    editor.ws.waitForSocketConnection = function (socket, callback) {
+                        setTimeout(
+                                function () {
+                                    if (socket.readyState === 1) {
+                                        if (callback !== undefined) {
+                                            callback();
+                                        }
+                                        return;
+                                    } else {
+                                        editor.ws.waitForSocketConnection(socket, callback);
                                     }
-                                    return;
-                                } else {
-                                    editor.ws.waitForSocketConnection(socket, callback);
-                                }
-                            }, 5);
-                };
-            }
-            else {
-                editor.ws.close();
-                editor.ws = null;
-                console.log("关闭连接");
-                this.innerText = "打开连接";
-            }
-
-
-        }
-
-        else {
-            // The browser doesn't support WebSocket
-            alert("WebSocket NOT supported by your Browser!");
-        }
-
-    }
-    //发送数据
-    btn = document.getElementById('btnWSocketSend');
-    btn.onclick = function () {
-        if (editor.ws == null) {
-            document.getElementById('btnWSocketOpen').onclick();
-        }
-
-
-        var str = "asdd:" + Math.random() * 100;
-        console.log("send: " + str);
-        editor.ws.sendMessage(str);
-    }
-
-    btn = document.getElementById('btnundo');
-    btn.onclick = function () {
-        editor.execute('undo');
-    }
-
-    btn = document.getElementById('btnredo');
-    btn.onclick = function () {
-        editor.execute('redo');
-    }
-
-    //    //手动创建节点
-    //    var startcell = editor.addCell({position: {x: 20, y: 210}, width: 100, height: 50, style: 'start', value: 'Agent'});
-    //    var cell1 = editor.addCell({position: {x: 200, y: 210}, width: 100, height: 50, style: 'seq'});
-    //    cell1.value('Sequence');
-    //
-    //    startcell.connect(cell1);
-    //
-    //    var cell2 = editor.addCell({position: {x: 400, y: 210}, width: 100, height: 50, style: 'seq', value: 'Sequence'});
-    //    //手动连接二个节点
-    //    cell1.connect(cell2, null, '连线');
-    //
-    //    var sequenceCell1 = editor.addCell({
-    //        position: {x: 600, y: 140},
-    //        width: 100,
-    //        height: 50,
-    //        style: 'action',
-    //        value: '动作1'
-    //    });
-    //    cell2.connect(sequenceCell1);
-    //
-    //    var sequenceCell2 = editor.addCell({
-    //        position: {x: 600, y: 210},
-    //        width: 100,
-    //        height: 50,
-    //        style: 'action',
-    //        value: '动作2'
-    //    });
-    //    cell2.connect(sequenceCell2);
-    //
-    //    var sequenceCell3 = editor.addCell({
-    //        position: {x: 600, y: 280},
-    //        width: 100,
-    //        height: 50,
-    //        style: 'action',
-    //        value: '动作3'
-    //    });
-    //    cell2.connect(sequenceCell3);
-
-    /*
-     //把画图信息转为json对象便于保存
-     //var json = editor.toJSON();
-     //从json数据恢复原画
-     editor.fromJSON('{"cells":[{"outs":[{"id":3,"to":2,"from":1}],"id":1,"position":{"x":106,"y":25},"width":60,"height":60,"style":"start","value":"开始"},{"outs":[{"id":9,"to":4,"from":2}],"id":2,"position":{"x":315,"y":60},"width":161,"height":66,"style":"process","value":"test cell"},{"outs":[{"id":11,"to":5,"from":4},{"id":17,"to":15,"from":4}],"id":4,"position":{"x":41,"y":156},"width":100,"height":80,"style":"subflow","value":""},{"outs":[{"id":10,"to":5,"from":5},{"id":12,"to":7,"from":5}],"id":5,"position":{"x":106,"y":323},"width":100,"height":50,"style":"join","value":""},{"outs":[],"id":6,"position":{"x":495,"y":416},"width":60,"height":60,"style":"end","value":"结束"},{"outs":[{"id":13,"to":8,"from":7}],"id":7,"position":{"x":154,"y":448},"width":100,"height":50,"style":"upload","value":""},{"outs":[{"id":14,"to":6,"from":8}],"id":8,"position":{"x":284,"y":315},"width":100,"height":50,"style":"download","value":""},{"outs":[{"id":18,"to":16,"from":15}],"id":15,"position":{"x":328,"y":172},"width":100,"height":80,"style":"subflow","value":""},{"outs":[{"id":19,"to":6,"from":16}],"id":16,"position":{"x":463,"y":241},"width":100,"height":80,"style":"process","value":"process"}]}');
-     */
-
-    editor.fromJSON('{"cells":[{"outs":[{"id":3,"to":2,"from":1}],"preConditions":[],"postConditions":[],"id":1,"position":{"x":20,"y":210},"width":100,"height":50,"style":"start","value":"Agent"},{"outs":[{"id":5,"to":4,"value":"连线","from":2}],"preConditions":[{"value":"preData_0"},{"value":"preData_1"},{"value":"preData_2"}],"postConditions":[{"value":"postData_0"}],"id":2,"position":{"x":200,"y":210},"width":100,"height":50,"style":"seq","value":"Sequence"},{"outs":[{"id":7,"to":6,"from":4},{"id":9,"to":8,"from":4},{"id":11,"to":10,"from":4}],"preConditions":[{"value":"preData_0"}],"postConditions":[],"id":4,"position":{"x":400,"y":210},"width":100,"height":50,"style":"seq","value":"Sequence"},{"outs":[],"preConditions":[{"value":"preData_0"}],"postConditions":[{"value":"postData_0"}],"id":6,"position":{"x":600,"y":140},"width":100,"height":50,"style":"action","value":"动作1"},{"outs":[],"preConditions":[],"postConditions":[],"id":8,"position":{"x":600,"y":210},"width":100,"height":50,"style":"action","value":"动作2"},{"outs":[],"preConditions":[],"postConditions":[],"id":10,"position":{"x":600,"y":280},"width":100,"height":50,"style":"action","value":"动作3"}]}');
-    editor.graph.refresh();
-    //元素上的右健菜单
-    editor.graph.bind('mouseup', function (evt) {
-        var menus = editor.menus();
-        //如果右击在元素上
-        if (evt.button == 2 && evt.target && evt.target.findParent) {
-            //debugger;
-            ////右击在元素上或其子元素上,向上查询其父容器jmcell
-            var cell = evt.target.type == 'jmCell' ? evt.target : evt.target.findParent('jmCell');
-            if (cell) {
-                menus.add('属性', function () {
-                    alert(evt.target.value + " pos:" + evt.target.position().x + "," + evt.target.position().y);
-                    console.log(evt);
-                }).show();
-                return false;
-            }
-            //击中空白处
-            else {
-                menus.add('属性2', function () {
-                    alert(1);
-                }).show();
-                return false;//阻断冒泡
-            }
-        }
-        menus.hide();
-    });
-
-    //监听选择事件
-    editor.on('select', function (cell, selected) {
-        if (cell.is('jmCell')) {
-            //当元素被选择后，更改其样式
-            var stylename = cell.styleName;
-            var _index = stylename.indexOf('_');
-            if (_index > 0) {
-                stylename = stylename.substring(0, _index);
-            }
-            cell.setStyle(selected ? stylename + '_selected' : stylename);
-
-            if (selected) {
-                var cells = editor.getSelectedCells();//获取所有选择的元素
-                //如果只选中一个
-                if (cells.length == 1) {
-                    document.getElementById('txtname').value = cell.value();
+                                }, 5);
+                    };
+                }
+                else {
+                    editor.ws.close();
+                    editor.ws = null;
+                    console.log("关闭连接");
+                    this.childNodes[0].innerText = "打开WebSocket连接";
                 }
             }
+            else {
+                // The browser doesn't support WebSocket
+                alert("WebSocket NOT supported by your Browser!");
+            }
+
         }
-        else if (cell.is(jmConnectLine)) {
-            if (selected) {
-                var cns = editor.getSelectedConnects();//获取所有选择的连线
-                //如果只选中一个
-                if (cns.length == 1) {
-                    document.getElementById('txtname').value = cell.value();
+        //发送数据
+        btn = document.getElementById('btnWSocketSend');
+        btn.onclick = function () {
+            if (editor.ws == null) {
+                document.getElementById('btnWSocketOpen').onclick();
+            }
+
+
+            var str = "asdd:" + Math.random() * 100;
+            console.log("send: " + str);
+            editor.ws.sendMessage(str);
+        }
+
+        btn = document.getElementById('btnundo');
+        btn.onclick = function () {
+            editor.execute('undo');
+        }
+
+        btn = document.getElementById('btnredo');
+        btn.onclick = function () {
+            editor.execute('redo');
+        }
+
+        //    //手动创建节点
+        //    var startcell = editor.addCell({position: {x: 20, y: 210}, width: 100, height: 50, style: 'start', value: 'Agent'});
+        //    var cell1 = editor.addCell({position: {x: 200, y: 210}, width: 100, height: 50, style: 'seq'});
+        //    cell1.value('Sequence');
+        //
+        //    startcell.connect(cell1);
+        //
+        //    var cell2 = editor.addCell({position: {x: 400, y: 210}, width: 100, height: 50, style: 'seq', value: 'Sequence'});
+        //    //手动连接二个节点
+        //    cell1.connect(cell2, null, '连线');
+        //
+        //    var sequenceCell1 = editor.addCell({
+        //        position: {x: 600, y: 140},
+        //        width: 100,
+        //        height: 50,
+        //        style: 'action',
+        //        value: '动作1'
+        //    });
+        //    cell2.connect(sequenceCell1);
+        //
+        //    var sequenceCell2 = editor.addCell({
+        //        position: {x: 600, y: 210},
+        //        width: 100,
+        //        height: 50,
+        //        style: 'action',
+        //        value: '动作2'
+        //    });
+        //    cell2.connect(sequenceCell2);
+        //
+        //    var sequenceCell3 = editor.addCell({
+        //        position: {x: 600, y: 280},
+        //        width: 100,
+        //        height: 50,
+        //        style: 'action',
+        //        value: '动作3'
+        //    });
+        //    cell2.connect(sequenceCell3);
+        /*
+         //把画图信息转为json对象便于保存
+         //var json = editor.toJSON();
+         //从json数据恢复原画
+         editor.fromJSON('{"cells":[{"outs":[{"id":3,"to":2,"from":1}],"id":1,"position":{"x":106,"y":25},"width":60,"height":60,"style":"start","value":"开始"},{"outs":[{"id":9,"to":4,"from":2}],"id":2,"position":{"x":315,"y":60},"width":161,"height":66,"style":"process","value":"test cell"},{"outs":[{"id":11,"to":5,"from":4},{"id":17,"to":15,"from":4}],"id":4,"position":{"x":41,"y":156},"width":100,"height":80,"style":"subflow","value":""},{"outs":[{"id":10,"to":5,"from":5},{"id":12,"to":7,"from":5}],"id":5,"position":{"x":106,"y":323},"width":100,"height":50,"style":"join","value":""},{"outs":[],"id":6,"position":{"x":495,"y":416},"width":60,"height":60,"style":"end","value":"结束"},{"outs":[{"id":13,"to":8,"from":7}],"id":7,"position":{"x":154,"y":448},"width":100,"height":50,"style":"upload","value":""},{"outs":[{"id":14,"to":6,"from":8}],"id":8,"position":{"x":284,"y":315},"width":100,"height":50,"style":"download","value":""},{"outs":[{"id":18,"to":16,"from":15}],"id":15,"position":{"x":328,"y":172},"width":100,"height":80,"style":"subflow","value":""},{"outs":[{"id":19,"to":6,"from":16}],"id":16,"position":{"x":463,"y":241},"width":100,"height":80,"style":"process","value":"process"}]}');
+         */
+
+        editor.fromJSON('{"cells":[{"outs":[{"id":3,"to":2,"from":1}],"preConditions":[],"postConditions":[],"id":1,"position":{"x":20,"y":210},"width":100,"height":50,"style":"start","value":"Agent"},{"outs":[{"id":5,"to":4,"value":"连线","from":2}],"preConditions":[{"value":"preData_0"},{"value":"preData_1"},{"value":"preData_2"}],"postConditions":[{"value":"postData_0"}],"id":2,"position":{"x":200,"y":210},"width":100,"height":50,"style":"seq","value":"Sequence"},{"outs":[{"id":7,"to":6,"from":4},{"id":9,"to":8,"from":4},{"id":11,"to":10,"from":4}],"preConditions":[{"value":"preData_0"}],"postConditions":[],"id":4,"position":{"x":400,"y":210},"width":100,"height":50,"style":"seq","value":"Sequence"},{"outs":[],"preConditions":[{"value":"preData_0"}],"postConditions":[{"value":"postData_0"}],"id":6,"position":{"x":600,"y":140},"width":100,"height":50,"style":"action","value":"动作1"},{"outs":[],"preConditions":[],"postConditions":[],"id":8,"position":{"x":600,"y":210},"width":100,"height":50,"style":"action","value":"动作2"},{"outs":[],"preConditions":[],"postConditions":[],"id":10,"position":{"x":600,"y":280},"width":100,"height":50,"style":"action","value":"动作3"}]}');
+        editor.graph.refresh();
+        //元素上的右健菜单
+        editor.graph.bind('mouseup', function (evt) {
+            var
+                    menus = editor.menus();
+            //如果右击在元素上
+            if (evt.button == 2 && evt.target && evt.target.findParent) {
+                //debugger;
+                ////右击在元素上或其子元素上,向上查询其父容器jmcell
+                var cell = evt.target.type == 'jmCell' ? evt.target : evt.target.findParent('jmCell');
+                if (cell) {
+                    menus.add('属性', function () {
+                        alert(evt.target.value + " pos:" + evt.target.position().x + "," + evt.target.position().y);
+                        console.log(evt);
+                    }).show();
+                    return false;
+                }
+                //击中空白处
+                else {
+                    menus.add('属性2', function () {
+                        alert(1);
+                    }).show();
+                    return false;//阻断冒泡
                 }
             }
-        }
-    });
+            menus.hide();
+        });
 
+        //监听选择事件
+        editor.on('select', function (cell, selected) {
+            if (cell.is('jmCell')) {
+                //当元素被选择后，更改其样式
+                var stylename = cell.styleName;
+                var _index = stylename.indexOf('_');
+                if (_index > 0) {
+                    stylename = stylename.substring(0, _index);
+                }
+                cell.setStyle(selected ? stylename + '_selected' : stylename);
 
-    //检查元素是否可以添加
-    editor.validCell = function (cell) {
-        var cells = this.getCells();
-        for (var i = 0; i < cells.length; i++) {
-            var c = cells[i];
-            if (cell.styleName == 'start' && c.styleName == 'start') {
-                alert('开始元素有且只能有一个');
-                return false;
+                if (selected) {
+                    var cells = editor.getSelectedCells();//获取所有选择的元素
+                    //如果只选中一个
+                    if (cells.length == 1) {
+                        document.getElementById('txtname').value = cell.value();
+                    }
+                }
             }
-            else if (cell.styleName == 'end' && c.styleName == 'end') {
-                alert('结束元素有且只能有一个');
-                return false;
+            else if (cell.is(jmConnectLine)) {
+                if (selected) {
+                    var cns = editor.getSelectedConnects();//获取所有选择的连线
+                    //如果只选中一个
+                    if (cns.length == 1) {
+                        document.getElementById('txtname').value = cell.value();
+                    }
+                }
             }
-        }
-        return true;
-    };
-    //检查元素是否可以相连
-    editor.validConnect = function (from, to) {
-        if (from.styleName == 'start') {
-            if (from.connects.count() > 0) {
-                alert('开始元素有且只能有一个出口');
-                return false;
+        });
+
+
+        //检查元素是否可以添加
+        editor.validCell = function (cell) {
+            var cells = this.getCells();
+            for (var i = 0; i < cells.length; i++) {
+                var c = cells[i];
+                if (cell.styleName == 'start' && c.styleName == 'start') {
+                    alert('开始元素有且只能有一个');
+                    return false;
+                }
+                else if (cell.styleName == 'end' && c.styleName == 'end') {
+                    alert('结束元素有且只能有一个');
+                    return false;
+                }
             }
-        }
-        else if (from.styleName == 'join') {
-            //如果fork已存在出口
-            if (from.connects.count(function (con) {
-                        return con.from = from;
-                    }) > 0) {
-                alert('join元素有且只能有一个出口');
-                return false;
+            return true;
+        };
+        //检查元素是否可以相连
+        editor.validConnect = function (from, to) {
+            if (from.styleName == 'start') {
+                if (from.connects.count() > 0) {
+                    alert('开始元素有且只能有一个出口');
+                    return false;
+                }
             }
-        }
-        return true;
-    };
+            else if (from.styleName == 'join') {
+                //如果fork已存在出口
+                if (from.connects.count(function (con) {
+                            return con.from = from;
+                        }) > 0) {
+                    alert('join元素有且只能有一个出口');
+                    return false;
+                }
+            }
+            return true;
+        };
 
-    //绑定名称改变事件，将值绑定到被选 中的元素上
-    jmUtils.bindEvent(document.getElementById('txtname'), 'change', function () {
-        var cells = editor.getSelectedCells();//获取所有选择的元素
-        for (var i in cells) {
-            cells[i].value(this.value);
-        }
-        var cns = editor.getSelectedConnects();
-        for (var i in cns) {
-            cns[i].value(this.value);
-        }
-        editor.graph.refresh();//刷新画布
-    });
+        //绑定名称改变事件，将值绑定到被选 中的元素上
+        jmUtils.bindEvent(document.getElementById('txtname'), 'change', function () {
+            var cells = editor.getSelectedCells();//获取所有选择的元素
+            for (var i in cells) {
+                cells[i].value(this.value);
+            }
+            var cns = editor.getSelectedConnects();
+            for (var i in cns) {
+                cns[i].value(this.value);
+            }
+            editor.graph.refresh();//刷新画布
+        });
 
-    //编辑器组件
-    var components = document.getElementById('components');
-    var nodesData = null;
-    jQuery.ajax({
-        url: "../src/nodes.json", //This URL is for Json file
-        type: "GET",
-        dataType: "json",
-        success: function (data) {
-            nodesData = data;
-            console.log(nodesData);
-            parseNodesData(nodesData, components);
-            //bind listen event
-            bindCompnentClick();
+        //编辑器组件
+        var components = document.getElementById('components');
+        var nodesData = null;
+        jQuery.ajax({
+            url: "../src/nodes.json", //This URL is for Json file
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                nodesData = data;
+                console.log(nodesData);
+                parseNodesData(nodesData, components);
+                //bind listen event
+                bindCompnentClick();
 
-        },
-        error: function () {
-            //Do alert is error
-        }
-    });
-    var groupId = 1;
-    function parseNodesData(datas, ElementNode) {
-        if (datas == null) return;
-        for (d in datas) {
-            if (typeof (datas[d]) !== "object") break;
+            },
+            error: function () {
+                //Do alert is error
+            }
+        });
+        var groupId = 1;
+
+        function parseNodesData(datas, ElementNode) {
+            if (datas == null) return;
+            for (d in datas) {
+                if (typeof (datas[d]) !== "object") break;
 //            console.log(datas[d].name);
-            if (datas[d].value == 0) {
-                var li = document.createElement('li');
-                ElementNode.appendChild(li);
-                var ul = document.createElement('ul');
-                li.appendChild(ul);
+                if (datas[d].value == 0) {
+                    var li = document.createElement('li');
+                    ElementNode.appendChild(li);
+                    var ul = document.createElement('ul');
+                    li.appendChild(ul);
 
-                var innerli = document.createElement('li');
-                innerli.innerText = datas[d].name;
-                innerli.id = "groupName" + (groupId++);
-                innerli.className = "groupName";
-                ul.appendChild(innerli);
+                    var innerli = document.createElement('li');
+                    innerli.innerText = datas[d].name;
+                    innerli.id = "groupName" + (groupId++);
+                    innerli.className = "groupName";
+                    ul.appendChild(innerli);
 
-                parseNodesData(datas[d].children, ul);
+                    parseNodesData(datas[d].children, ul);
 
 
-            } else {
-                //console.log(images[datas[d].value]);
-                var li = document.createElement('li');
-                var forkimg = editor.regComponent(images[datas[d].value], {
-                    width: 100,
-                    height: 50,
-                    style: datas[d].style.shape,
-                    value: datas[d].value,
-                    name: datas[d].name
-                });
-                li.appendChild(forkimg);
-                li.appendChild(document.createTextNode(datas[d].name));
-                ElementNode.appendChild(li);
+                } else {
+                    //console.log(images[datas[d].value]);
+                    var li = document.createElement('li');
+                    var forkimg = editor.regComponent(images[datas[d].value], {
+                        width: 100,
+                        height: 50,
+                        style: datas[d].style.shape,
+                        value: datas[d].value,
+                        name: datas[d].name
+                    });
+                    li.appendChild(forkimg);
+                    li.appendChild(document.createTextNode(datas[d].name));
+                    ElementNode.appendChild(li);
+                }
             }
         }
-    }
 
-    function bindCompnentClick() {
+        function bindCompnentClick() {
 //bind listen event, controll show or not
-        $('li[id^=groupName]').click(function () {
-            // 被点击的那个div
-            var li = $(this);
-            // 被点击的那个div的id
-            var id = li.attr('id');
-            //alert(id);
-            if ($(this).next().css("display") == "none") {
-                $(this).nextAll().css("display", "block");
-            } else {
-                $(this).nextAll().css("display", "none");
-            }
-        })
+            $('li[id^=groupName]').click(function () {
+                // 被点击的那个div
+                var li = $(this);
+                // 被点击的那个div的id
+                var id = li.attr('id');
+                //alert(id);
+                if ($(this).next().css("display") == "none") {
+                    $(this).nextAll().css("display", "block");
+                } else {
+                    $(this).nextAll().css("display", "none");
+                }
+            })
+        }
+
     }
 </script>
