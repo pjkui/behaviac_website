@@ -22,7 +22,8 @@
     color: #fe5116;
 }
 #components{
-    height: 600px;
-    overflow: scroll;
+    /*height: 600px;*/
+    width: 200px;
+    overflow-x: scroll;
 
 }

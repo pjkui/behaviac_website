@@ -14,49 +14,129 @@
 </head>
 
 <body>
-
-<table>
-    <tr>
-        <td class="first"></td>
-        <td>
-            <button id="btnundo">撤消</button>
-            <button id="btnredo">重复</button>
-            <button id="btnZoomOut">缩小</button>
-
-            <button id="btnLeft">左对齐</button>
-            <button id="btnCenter">水平居中</button>
-            <button id="btnRight">右对齐</button>
-            <button id="btnTop">顶部对齐</button>
-            <button id="btnMiddle">垂直居中</button>
-            <button id="btnBottom">底部对齐</button>
-
-            <button id="btnZoomIn">放大</button>
-            <button id="btnZoomActual">复原</button>
-            <button id="btnExpImage">导出为图片</button>
-            <button id="btnLoad">加载数据</button>
-            <button id="btnWSocketOpen">打开Socket</button>
-            <button id="btnWSocketSend">发送数据</button>
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td class="first components ">
-            <ul id="components">
-
-            </ul>
-        </td>
-        <td>
-            <div id="container">
+<div class="easyui-layout" style="width:100%;height:1000px;">
+    <div data-options="region:'north'" style="height:50px">
+        <div class="easyui-panel" style="padding:0px;">
+            <a href="#" class="easyui-linkbutton" data-options="plain:true">首页</a>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm5',iconCls:'icon-save'">文件</a>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">编辑</a>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm6'">视图</a>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-help'">帮助</a>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm4',iconCls:'icon-ok'">运行</a>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">About</a>
+        </div>
+        <div id="mm1" style="width:150px;">
+            <div data-options="iconCls:'icon-undo'" id="btnundo">Undo</div>
+            <div data-options="iconCls:'icon-redo'" id="btnredo">Redo</div>
+            <div class="menu-sep"></div>
+            <div>Cut</div>
+            <div>Copy</div>
+            <div>Paste</div>
+            <div class="menu-sep"></div>
+            <div>
+                <span>Toolbar</span>
+                <div style="width:150px;">
+                    <div>Address</div>
+                    <div>Link</div>
+                    <div>Navigation Toolbar</div>
+                    <div>Bookmark Toolbar</div>
+                    <div class="menu-sep"></div>
+                    <div>New Toolbar...</div>
+                </div>
             </div>
-        </td>
-        <td style="vertical-align:top;">
-            <label for="txtname">名称:</label><input id="txtname" name="txtname" type="text"/>
-            <br/>
-            <label for="txtdes">说明:</label><input id="txtdes" name="txtdes" type="text"/>
-        </td>
-    </tr>
-</table>
-<div id="json"></div>
+            <div data-options="iconCls:'icon-remove'">Delete</div>
+            <div>Select All</div>
+        </div>
+        <div id="mm2" style="width:100px;">
+            <div>Help</div>
+            <div>Update</div>
+            <div>About</div>
+        </div>
+        <div id="mm3" class="menu-content" style="background:#f0f0f0;padding:0px;text-align:left;width: 400px;">
+            <img src="http://www.behaviac.com/img/logo-2x.png" style="width:50px;height:50px">
+            <p style="font-size:14px;color:#444;">腾讯出品游戏AI组件 <br>2015年12月31日</p>
+        </div>
+        <div id="mm4" style="width:150px;">
+            <div id="btnWSocketOpen">打开Web Socket</div>
+            <div id="btnWSocketSend">发送数据</div>
+        </div>
+        <div id="mm5" style="width:150px;">
+            <div id="btnExpImage">导出为图片</div>
+            <div id="btnSaveData">保存数据</div>
+            <div id="btnLoad">加载数据</div>
+        </div>
+        <div id="mm6" style="width:150px;">
+            <div id="btnZoomOut">缩小</div>
+            <div id="btnZoomIn">放大</div>
+            <div id="btnZoomActual">复原</div>
+            <div class="menu-sep"></div>
+            <div id="btnLeft">左对齐</div>
+            <div id="btnCenter">水平居中</div>
+            <div id="btnRight">右对齐</div>
+            <div id="btnTop">顶部对齐</div>
+            <div id="btnMiddle">垂直居中</div>
+            <div id="btnBottom">底部对齐</div>
+        </div>
+
+    </div>
+    <div data-options="region:'east',split:true" title="属性" style="width:200px;" class="easyui-draggable" >
+        <label for="txtname">名称:</label><input id="txtname" name="txtname" type="text"/>
+        <br/>
+        <label for="txtdes">说明:</label><input id="txtdes" name="txtdes" type="text"/>
+    </div>
+    <div data-options="region:'west',split:true" title="节点" style="width:200px;">
+        <ul id="components">
+
+        </ul>
+    </div>
+    <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+
+        <div id="container">
+        </div>
+    </div>
+    <div data-options="region:'south',split:true" style="height:200px;">
+        <div id="json"></div>
+    </div>
+</div>
+
+<!--<table>-->
+    <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td class="first"></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnundo">撤消</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnredo">重复</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnZoomOut">缩小</button>&ndash;&gt;&ndash;&gt;-->
+
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnLeft">左对齐</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnCenter">水平居中</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnRight">右对齐</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnTop">顶部对齐</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnMiddle">垂直居中</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnBottom">底部对齐</button>&ndash;&gt;&ndash;&gt;-->
+
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnZoomIn">放大</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnZoomActual">复原</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnExpImage">导出为图片</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnLoad">加载数据</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnWSocketOpen">打开Socket</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="btnWSocketSend">发送数据</button>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td></td>&ndash;&gt;-->
+    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+    <!--<tr>-->
+        <!--<td class="first components ">-->
+            <!--&lt;!&ndash;<ul id="components">&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--</td>-->
+        <!--<td>-->
+
+        <!--</td>-->
+        <!--<td style="vertical-align:top;">-->
+
+        <!--</td>-->
+    <!--</tr>-->
+<!--</table>-->
 <div id="expimagearea" style="display:none;">
     <div style="position:relative; height:60px;">
         <a href="#" style="position:fixed;"
