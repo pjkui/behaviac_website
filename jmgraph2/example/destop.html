@@ -108,13 +108,16 @@
                             <span>Behaviac</span>
                             <ul>
                                 <li>
-                                    <span>Friend</span>
+                                    <a onclick="openTab('behaviac_agent')">behaviac_agent</a>
                                 </li>
                                 <li>
-                                    <span>Wife</span>
+                                    <a onclick="openTab('parser')">parser</a>
                                 </li>
                                 <li>
-                                    <span>Company</span>
+                                    <a onclick="openTab('npc_agent')">npc_agent</a>
+                                </li>
+                                <li>
+                                    <a onclick="openTab('AI_agent')">AI_agent</a>
                                 </li>
                             </ul>
                         </li>
@@ -141,9 +144,12 @@
         </div>
     </div>
 </div>
-<div data-options="region:'center',title:'',iconCls:'icon-ok'">
-    <div id="container">
+<div data-options="region:'center',title:'',iconCls:'icon-ok'" id="tt" class="easyui-tabs">
+    <div title="Tab1" data-options="closable:true" style="padding:0px;;">
+        <div id="container">
+        </div>
     </div>
+
 </div>
 <div data-options="region:'south',split:true" style="height:200px;">
     <div id="json"></div>
@@ -250,6 +256,41 @@
 
 <script type="text/javascript" src="images.js"></script>
 <script type="text/javascript">
+    currentTab = "";
+    function openTab(plugin) {
+        currentTab = plugin;
+        if ($('#tt').tabs('exists', plugin)) {
+            $('#tt').tabs('select', plugin);
+        } else {
+            $('#tt').tabs('add', {
+                title: plugin,
+//                   href:plugin+'.php',
+                closable: true,
+                bodyCls: 'content-doc',
+                content: function (data) {
+
+                    var contain = document.createElement('div');
+                    contain.id = "container_" + plugin;
+                    contain.innerHTML = "hello this is container of " + plugin;
+                    editor1 = editor;
+                    editor1.container = contain.id;
+                    return contain;
+                }
+//                   extractor:function(data){
+//                       data = $.fn.panel.defaults.extractor(data);
+//                       var tmp = $('<div></div>').html(data);
+//                       data = tmp.find('#content').html();
+//                       tmp.remove();
+//                       return data;
+//                   }
+            });
+        }
+
+    }
+    ;
+
+</script>
+<script type="text/javascript">
     $.parser.onComplete = function () {
         console.log("easyUI parse finished!");
         container = document.getElementById("container")
@@ -262,7 +303,7 @@
             canvasW = 800;
         }
         //初始化编辑器
-        var editor = new jmEditor({
+        editor = new jmEditor({
             container: 'container',
             width: canvasW,
             height: canvasH,

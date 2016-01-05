@@ -47,7 +47,7 @@ function jmEditor(option) {
      */
     this.type = 'jmEditor';
     //是否可编辑
-    if (typeof option.enabled === 'undefined') option.enabled = true;
+    if (option && typeof option.enabled === 'undefined') option.enabled = true;
     this.isEnabled(option.enabled);
     /**
      * 是否可连线
