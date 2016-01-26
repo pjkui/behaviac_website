@@ -215,13 +215,13 @@ Blockly.JavaScript['wait_topdown'] = function (block) {
     var dropdown_property = block.getFieldValue('property');
     var statements_actions = Blockly.JavaScript.statementToCode(block, 'actions');
     var unit = dropdown_property == "time" ? 1 : 20;
-    debugger;
+    //debugger;
     // TODO: Assemble JavaScript into code variable.
-    var code = 'if(!behaviac.checkWaitSequence('+block.id+')){\n' +
-        'behaviac.waitSequence.push('+block.id+');\n' +
+    var code = 'if(!behaviac.checkWaitSequence(' + block.id + ')){\n' +
+        'behaviac.waitSequence.push(' + block.id + ');\n' +
         'setTimeout(function(){\n'
         + statements_actions +
-        'behaviac.waitSequence.remove('+block.id+')' +
+        'behaviac.waitSequence.remove(' + block.id + ')' +
         '},' + text_times * unit + ');\n}\n';
     //var code = "console.log('action_topdown doing');\n{\n" + statements_actions + "}\n";
     return code;
@@ -262,11 +262,13 @@ Blockly.JavaScript['sequence_topdown'] = function (block) {
     var dropdown_type = block.getFieldValue('type');
     //var statements_actions = Blockly.JavaScript.statementToCode(block, 'actions');
     var targetBlock = block.getInputTargetBlock("actions");
-    while (targetBlock.getNextBlock()) {
-        Blockly.JavaScript.blockToCode(targetBlock);
+    var code = "";
+    while (targetBlock) {
+        code += Blockly.JavaScript.currentBlockToCode(targetBlock);
+        targetBlock = targetBlock.getNextBlock();
     }
-    var code = "console.log('action_topdown doing. type:" + dropdown_type + "');\n" +
-        "{\n" + statements_actions + "}\n";
+    //var code = "console.log('action_topdown doing. type:" + dropdown_type + "');\n" +
+    //    "{\n" + statements_actions + "}\n";
     return code;
 };
 
@@ -672,10 +674,52 @@ Blockly.Blocks['tank_fireAtAngle'] = {
 Blockly.JavaScript['tank_fireAtAngle'] = function (block) {
     var angle_angle = block.getFieldValue('angle');
     // TODO: Assemble JavaScript into code variable.
-    var code = 'fireAtAngle(-' + angle_angle + ');\n';
+    var code = 'fireAtAngle(' + angle_angle + ');\n';
+    return code;
+};
+Blockly.Blocks['tank_fireAtAngle_1'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("fireAtAngle(");
+        this.appendValueInput("angle");
+        this.appendDummyInput()
+            .appendField(")");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour(160);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+    }
+};
+Blockly.JavaScript['tank_fireAtAngle_1'] = function (block) {
+    var value_angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'fireAtAngle(' + value_angle + ');\n';
     return code;
 };
 
+Blockly.Blocks['tank_turnToAngle_1'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("turnToAngle(");
+        this.appendValueInput("angle");
+        this.appendDummyInput()
+            .appendField(")");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour(160);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+    }
+};
+Blockly.JavaScript['tank_turnToAngle_1'] = function (block) {
+    var value_angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'turnToAngle' + value_angle + ';\n';
+    return code;
+};
 
 Blockly.Blocks['tank_fireAt'] = {
     init: function () {
@@ -696,5 +740,57 @@ Blockly.JavaScript['tank_fireAt'] = function (block) {
     var value_radian = Blockly.JavaScript.valueToCode(block, 'radian', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
     var code = 'fireAt(-' + value_radian + ');\n';
+    return code;
+};
+
+Blockly.Blocks['tank_NearestEnemyDirectionAngle'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("getNearestEnemyDirectionAngle()");
+        this.setOutput(true);
+        this.setColour(65);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+    }
+};
+Blockly.JavaScript['tank_NearestEnemyDirectionAngle'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'getNearestEnemyDirectionAngle()';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.Blocks['tank_NearestEnemyDistance'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("getNearestEnemyDistance()");
+        this.setOutput(true);
+        this.setColour(65);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+    }
+};
+Blockly.JavaScript['tank_NearestEnemyDistance'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'getNearestEnemyDistance()';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.Blocks['tank_NearestEnemy'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("getNearestEnemy()");
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour(65);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+    }
+};
+Blockly.JavaScript['tank_NearestEnemy'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'getNearestEnemy();\n';
+    // TODO: Change ORDER_NONE to the correct strength.
     return code;
 };

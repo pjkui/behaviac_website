@@ -99,7 +99,7 @@ var turret;
 
 var enemies;
 var enemyBullets;
-var enemiesTotal = 0;
+//var enemiesTotal = 0;
 var enemiesAlive = 0;
 var explosions;
 
@@ -226,15 +226,15 @@ function update() {
         tank.angle += 4;
     }
 
-    //if (cursors.up.isDown) {
-    //    //  The speed we'll travel at
-    //    currentSpeed = 300;
-    //}
-    //else {
-    //    if (currentSpeed > 0) {
-    //        currentSpeed -= 4;
-    //    }
-    //}
+    if (cursors.up.isDown) {
+        //  The speed we'll travel at
+        currentSpeed = 300;
+    }
+    else {
+        if (currentSpeed > 0) {
+            currentSpeed -= 4;
+        }
+    }
     //turnLeft();
     //moveForward()
     btexe();
@@ -263,7 +263,7 @@ function update() {
 }
 function moveForward() {
     if (currentSpeed < 300) {
-        currentSpeed += 4;
+        currentSpeed = 300;
     }
 }
 /**
@@ -331,7 +331,7 @@ function fire() {
         var y = 1000 * Math.sin(turret.rotation || 0);
         //turret.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer, 5000);
         //turret.rotation = game.physics.arcade.moveToXY(bullet, x,y,500);//
-        bullet.rotation = game.physics.arcade.moveToXY(bullet, x,y,500);
+        bullet.rotation = game.physics.arcade.moveToXY(bullet, x, y, 500);
     }
 
 }
@@ -354,9 +354,13 @@ function fireAtAngle(angle) {
         turret.rotation = angle / 180 * Math.PI;
         var x = 1000 * Math.cos(turret.rotation || 0);
         var y = 1000 * Math.sin(turret.rotation || 0);
+        x += tank.position.x;
+        y += tank.position.y;
         //turret.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer, 5000);
-        //turret.rotation = game.physics.arcade.moveToXY(bullet, x,y,500);//
-        bullet.rotation = game.physics.arcade.moveToXY(bullet, x,y,500);
+        ////turret.rotation = game.physics.arcade.moveToXY(bullet, x,y,500);//
+        bullet.rotation = game.physics.arcade.moveToXY(bullet, x, y, 1000);
+        bullet.rotation = turret.rotation;
+        //bullet.rotation = game.physics.arcade.moveToObject(bullet,nearestEnemy,500,2);
     }
 }
 
@@ -379,15 +383,80 @@ function fireAt(radian) {
         var y = 1000 * Math.sin(turret.rotation || 0);
         //turret.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer, 5000);
         //turret.rotation = game.physics.arcade.moveToXY(bullet, x,y,500);//
-        bullet.rotation = game.physics.arcade.moveToXY(bullet, x,y,500);
-
+        bullet.rotation = game.physics.arcade.moveToXY(bullet, x, y, 500);
     }
 }
 
 function render() {
-
     // game.debug.text('Active Bullets: ' + bullets.countLiving() + ' / ' + bullets.length, 32, 32);
     game.debug.text('Enemies: ' + enemiesAlive + ' / ' + enemiesTotal, 32, 32);
-
 }
 
+/**
+ * store the nearest enemy
+ * @type {null}
+ */
+var nearestEnemy = null;
+
+var nearestEnemyDistance = 0.0;
+
+var nearestEnemyDirection = 0;
+/**
+ * the frequence to update nearestenemy distance and direction
+ * @type {number}
+ */
+var updateFrequence = 0;
+/**
+ * get the nearest enemy
+ */
+function getNearestEnemy() {
+    var tempEnemy = null;
+    var minDis = Infinity;
+
+    for (var i = 0; i < enemies.length; i++) {
+        if (enemies[i].alive) { // only if enemy is alive
+            var dis = this.game.physics.arcade.distanceBetween(enemies[i].tank, tank);
+            if (dis < minDis) {
+                minDis = dis;
+                tempEnemy = enemies[i];
+            }
+        }
+    }
+    nearestEnemyDistance = minDis;
+    console.log(tempEnemy);
+    nearestEnemy = tempEnemy;
+}
+
+/**
+ * update the  nearestenemy distance and direction data
+ */
+function updateData() {
+    if (++updateFrequence > 3) {
+        updateFrequence = 0;
+        getNearestEnemy();
+    }
+}
+
+/**
+ * get the nearest Enemy direction angle
+ */
+function getNearestEnemyDirectionAngle() {
+    updateData();
+    if (nearestEnemy.alive) {
+        if (nearestEnemy.position == null) {
+            return Phaser.Point.angle(nearestEnemy.tank.position, tank.position) * 180 / Math.PI;
+        }
+        return Phaser.Point.angle(nearestEnemy.position, tank.position) * 180 / Math.PI;
+    } else {
+        getNearestEnemy();
+    }
+    return null;
+}
+/**
+ * get the nearest enemy's distance
+ * @returns {number}
+ */
+function getNearestEnemyDistance() {
+    updateData();
+    return nearestEnemyDistance;
+}

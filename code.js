@@ -22,10 +22,50 @@
  * @author fraser@google.com (Neil Fraser)
  */
 'use strict';
+/**
+ * current Block to Code . modify generate code by current block
+ * @param block
+ * @returns {*}
+ */
+Blockly.Generator.prototype.currentBlockToCode = function (block) {
+    if (!block) {
+        return '';
+    }
+    if (block.disabled) {
+        // Skip past this block if it is disabled.
+        return this.blockToCode(block.getNextBlock());
+    }
 
+    var func = this[block.type];
+    goog.asserts.assertFunction(func,
+        'Language "%s" does not know how to generate code for block type "%s".',
+        this.name_, block.type);
+    // First argument to func.call is the value of 'this' in the generator.
+    // Prior to 24 September 2013 'this' was the only way to access the block.
+    // The current prefered method of accessing the block is through the second
+    // argument to func.call, which becomes the first parameter to the generator.
+    var code = func.call(block, block);
+    if (goog.isArray(code)) {
+        // Value blocks return tuples of code and operator order.
+        return [this.scrub_(block, code[0]), code[1]];
+    } else if (goog.isString(code)) {
+        if (this.STATEMENT_PREFIX) {
+            code = this.STATEMENT_PREFIX.replace(/%1/g, '\'' + block.id + '\'') +
+                code;
+        }
+        return code;
+    } else if (code === null) {
+        // Block has handled code generation itself.
+        return '';
+    } else {
+        goog.asserts.fail('Invalid code generated: %s', code);
+    }
+};
 /**
  * Create a namespace for the application.
  */
+
+
 var Code = {};
 
 /**
@@ -530,21 +570,21 @@ Code.initLanguage = function () {
         listVar.textContent = MSG['listVariable'];
     }
 };
-function createJS(code){
+function createJS(code) {
     //截取前100字符为函数名，加快匹配速度，所以agent名称不建议不超过100个字符
-    var agentName=code.substr(0,100).match(/\w+/m)[0];
+    var agentName = code.match(/\w+\s*=\s*function/m)[0].split('=')[0].trim();
     //agentName=agentName.substr(0,agentName.length-1);
-    var script=document.getElementById(agentName);
-    var index=agents.indexOf(agentName);
-    if(index>-1){
-        agents.splice(index,1);
+    var script = document.getElementById(agentName);
+    var index = agents.indexOf(agentName);
+    if (index > -1) {
+        agents.splice(index, 1);
     }
-    if(script==null){
+    if (script == null) {
         script = document.createElement('script');
-        script.id=agentName;
+        script.id = agentName;
     }
     agents.push(agentName);
-    script.innerHTML=code;
+    script.innerHTML = code;
     document.head.appendChild(script);
 }
 /**

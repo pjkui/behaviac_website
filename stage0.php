@@ -10,6 +10,24 @@ if ($_SERVER['SERVER_ADDR'] === '127.0.0.1') {
 } else {
     $embedJS = "embed.js";
 }
+$data = "";
+$enemiesCount = 0;
+if (!empty($_GET)) {
+    if ($_GET['level'] == 0) {
+        $data = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="agent" x="113" y="63"><field name="agentType">0</field><statement name="nodes"><block type="tank_fireAtAngle"><field name="angle">60</field></block></statement></block></xml>';
+    } else if ($_GET['level'] == 1) {
+        $data = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="variables_set" x="112" y="38"><field name="VAR">item</field><value name="VALUE"><block type="math_number"><field name="NUM">40</field></block></value></block><block type="agent" x="113" y="88"><field name="agentType">0</field><statement name="nodes"><block type="sequence_topdown"><field name="type">1</field><statement name="actions"><block type="wait_topdown"><field name="times">1000</field><field name="property">time</field><statement name="actions"><block type="variables_set"><field name="VAR">item</field><value name="VALUE"><block type="math_arithmetic"><field name="OP">ADD</field><value name="A"><shadow type="math_number"><field name="NUM">1</field></shadow><block type="variables_get"><field name="VAR">item</field></block></value><value name="B"><shadow type="math_number"><field name="NUM">1</field></shadow><block type="math_number"><field name="NUM">40</field></block></value></block></value><next><block type="tank_fireAtAngle_1"><value name="angle"><shadow type="math_number"><field name="NUM">67</field></shadow><block type="variables_get"><field name="VAR">item</field></block></value><next><block type="log_topdown"><value name="TEXT"><block type="text"><field name="TEXT">I Love Behaviac!</field></block></value></block></next></block></next></block></statement></block></statement></block></statement></block></xml>';
+    } else if ($_GET['level'] == 2) {
+        $data = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="variables_set" x="112" y="38"><field name="VAR">item</field><value name="VALUE"><block type="math_number"><field name="NUM">40</field></block></value></block><block type="variables_set" x="112" y="38"><field name="VAR">item</field><value name="VALUE"><block type="math_number"><field name="NUM">40</field></block></value></block><block type="agent" x="113" y="88"><field name="agentType">0</field><statement name="nodes"><block type="sequence_topdown"><field name="type">1</field><statement name="actions"><block type="wait_topdown"><field name="times">1000</field><field name="property">time</field><statement name="actions"><block type="variables_set"><field name="VAR">item</field><value name="VALUE"><block type="math_random_int"><value name="FROM"><shadow type="math_number"><field name="NUM">1</field></shadow></value><value name="TO"><shadow type="math_number"><field name="NUM">100</field></shadow><block type="math_number"><field name="NUM">360</field></block></value></block></value><next><block type="tank_fireAtAngle_1"><value name="angle"><shadow type="math_number"><field name="NUM">67</field></shadow><block type="variables_get"><field name="VAR">item</field></block></value><next><block type="log_topdown"><value name="TEXT"><block type="variables_get"><field name="VAR">item</field></block></value><next><block type="log_topdown"><value name="TEXT"><block type="text"><field name="TEXT">I Love Behaviac!</field></block></value></block></next></block></next></block></next></block></statement></block></statement></block></statement></block></xml>';
+    } else if ($_GET['level'] == 3) {
+        $data = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="variables_set" x="112" y="38"><field name="VAR">item</field><value name="VALUE"><block type="math_number"><field name="NUM">40</field></block></value></block><block type="variables_set" x="112" y="38"><field name="VAR">item</field><value name="VALUE"><block type="math_number"><field name="NUM">40</field></block></value></block><block type="agent" x="113" y="88"><field name="agentType">0</field><statement name="nodes"><block type="sequence_topdown"><field name="type">1</field><statement name="actions"><block type="wait_topdown"><field name="times">1000</field><field name="property">time</field><statement name="actions"><block type="variables_set"><field name="VAR">item</field><value name="VALUE"><block type="math_arithmetic"><field name="OP">ADD</field><value name="A"><shadow type="math_number"><field name="NUM">1</field></shadow><block type="variables_get"><field name="VAR">item</field></block></value><value name="B"><shadow type="math_number"><field name="NUM">1</field></shadow><block type="math_number"><field name="NUM">40</field></block></value></block></value><next><block type="tank_fireAtAngle_1"><value name="angle"><shadow type="math_number"><field name="NUM">67</field></shadow><block type="variables_get"><field name="VAR">item</field></block></value><next><block type="log_topdown"><value name="TEXT"><block type="variables_get"><field name="VAR">item</field></block></value><next><block type="log_topdown"><value name="TEXT"><block type="text"><field name="TEXT">I Love Behaviac!</field></block></value></block></next></block></next></block></next></block></statement><next><block type="wait_topdown"><field name="times">100</field><field name="property">time</field><statement name="actions"><block type="tank_moveForward"><next><block type="tank_turnRight"></block></next></block></statement></block></next></block></statement></block></statement></block></xml>';
+    } else if ($_GET['level'] == 4) {
+        $data = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="variables_set" x="112" y="38"><field name="VAR">item</field><value name="VALUE"><block type="math_number"><field name="NUM">40</field></block></value></block><block type="variables_set" x="112" y="38"><field name="VAR">item</field><value name="VALUE"><block type="math_number"><field name="NUM">40</field></block></value></block><block type="agent" x="113" y="88"><field name="agentType">0</field><statement name="nodes"><block type="sequence_topdown"><field name="type">1</field><statement name="actions"><block type="wait_topdown"><field name="times">1000</field><field name="property">time</field><statement name="actions"><block type="variables_set"><field name="VAR">item</field><value name="VALUE"><block type="math_random_int"><value name="FROM"><shadow type="math_number"><field name="NUM">1</field></shadow><block type="math_number"><field name="NUM">1</field></block></value><value name="TO"><shadow type="math_number"><field name="NUM">100</field></shadow><block type="math_number"><field name="NUM">360</field></block></value></block></value><next><block type="tank_fireAtAngle_1"><value name="angle"><shadow type="math_number"><field name="NUM">67</field></shadow><block type="variables_get"><field name="VAR">item</field></block></value><next><block type="log_topdown"><value name="TEXT"><block type="variables_get"><field name="VAR">item</field></block></value><next><block type="log_topdown"><value name="TEXT"><block type="text"><field name="TEXT">I Love Behaviac!</field></block></value></block></next></block></next></block></next></block></statement><next><block type="wait_topdown"><field name="times">100</field><field name="property">time</field><statement name="actions"><block type="tank_moveForward"><next><block type="tank_turnLeft"></block></next></block></statement></block></next></block></statement></block></statement></block></xml>';
+    } else if ($_GET['level'] == 5) {
+        $enemiesCount = 20;//set enemies number
+        $data = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="agent" x="13" y="37"><field name="agentType">0</field><statement name="nodes"><block type="tank_NearestEnemy"><next><block type="tank_turnToAngle_1"><value name="angle"><shadow type="math_number"><field name="NUM">67</field></shadow><block type="tank_NearestEnemyDirectionAngle"></block></value><next><block type="controls_if"><mutation else="1"></mutation><value name="IF0"><block type="logic_compare"><field name="OP">LT</field><value name="A"><block type="tank_NearestEnemyDistance"></block></value><value name="B"><block type="math_number"><field name="NUM">200</field></block></value></block></value><statement name="DO0"><block type="tank_fireAtAngle_1"><value name="angle"><shadow type="math_number"><field name="NUM">67</field></shadow><block type="tank_NearestEnemyDirectionAngle"></block></value></block></statement><statement name="ELSE"><block type="tank_moveForward"></block></statement></block></next></block></next></block></statement></block></xml>';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,32 +67,39 @@ if ($_SERVER['SERVER_ADDR'] === '127.0.0.1') {
     </style>
 
     <script>
-        agents=[];
-        function btexe(){
-            var len=agents.length;
-            if(len>0)
-            {
-                for(var i=0;i<len;i++)
-                {
+
+        agents = [];
+        function loadData() {
+            if (localStorage.data) {
+                localStorage.data = '<?=$data?>';
+            } else {
+                localStorage.setItem('data', '<?=$data?>');
+            }
+        }
+        function btexe() {
+            var len = agents.length;
+            if (len > 0) {
+                for (var i = 0; i < len; i++) {
                     try {
-                        eval(agents[i]+"()");
+                        eval(agents[i] + "()");
                     } catch (e) {
                         alert(MSG['badCode'].replace('%1', e));
                     }
                 }
             }
         }
+
     </script>
 </head>
-<body>
+<body onload="loadData()">
 <table width="100%" height="100%">
     <tr>
         <td width="50%">
             <table width="100%" height="100%">
                 <tr>
                     <td>
-                        <h1><a href="https://developers.google.com/blockly/">Blockly</a>&rlm; &gt;
-                            <a href="../index.html">Demos</a>&rlm; &gt;
+                        <h1><a href="//www.behaviac.com">Behaviac</a>&rlm; &gt;
+                            <a href="#">Demos</a>&rlm; &gt;
                             <span id="title">...</span>
                         </h1>
                     </td>
@@ -129,10 +154,7 @@ if ($_SERVER['SERVER_ADDR'] === '127.0.0.1') {
                 var IDE_HOOK = false;
                 var VERSION = '<?php echo $v ?>';
 
-                <?php
-//                        $src = file_get_contents("games/tanks.js");
-//                        echo $src;
-                ?>
+                var enemiesTotal = <?=$enemiesCount?>;
 
             </script>
         </td>
@@ -547,7 +569,20 @@ if ($_SERVER['SERVER_ADDR'] === '127.0.0.1') {
             </block>
             <block type="tank_fireAtAngle">
             </block>
-
+            <block type="tank_fireAtAngle_1">
+                <value name="angle">
+                    <shadow type="math_number">
+                        <field name="NUM">67</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="tank_turnToAngle_1">
+                <value name="angle">
+                    <shadow type="math_number">
+                        <field name="NUM">67</field>
+                    </shadow>
+                </value>
+            </block>
             <block type="tank_fireAt">
                 <value name="radian">
                     <shadow type="math_number">
@@ -555,7 +590,12 @@ if ($_SERVER['SERVER_ADDR'] === '127.0.0.1') {
                     </shadow>
                 </value>
             </block>
-
+            <block type="tank_NearestEnemyDirectionAngle">
+            </block>
+            <block type="tank_NearestEnemyDistance">
+            </block>
+            <block type="tank_NearestEnemy">
+            </block>
 
         </category>
     </category>
