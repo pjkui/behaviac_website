@@ -12,7 +12,7 @@ if (isset($_GET['v'])) {
 //}
 $data = "";
 $enemiesCount = 0;
-if (!empty($_GET)) {
+if (!empty($_GET['level'])) {
     if ($_GET['level'] == 0) {
         $data = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="agent" x="113" y="63"><field name="agentType">0</field><statement name="nodes"><block type="tank_fireAtAngle"><field name="angle">60</field></block></statement></block></xml>';
     } else if ($_GET['level'] == 1) {
