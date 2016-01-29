@@ -26,7 +26,7 @@ if (!empty($_GET['level'])) {
     } else if ($_GET['level'] == 5) {
         $enemiesCount = 20;//set enemies number
         $data = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="agent" x="13" y="37"><field name="agentType">0</field><statement name="nodes"><block type="tank_NearestEnemy"><next><block type="tank_turnToAngle_1"><value name="angle"><shadow type="math_number"><field name="NUM">67</field></shadow><block type="tank_NearestEnemyDirectionAngle"></block></value><next><block type="controls_if"><mutation else="1"></mutation><value name="IF0"><block type="logic_compare"><field name="OP">LT</field><value name="A"><block type="tank_NearestEnemyDistance"></block></value><value name="B"><block type="math_number"><field name="NUM">200</field></block></value></block></value><statement name="DO0"><block type="tank_fireAtAngle_1"><value name="angle"><shadow type="math_number"><field name="NUM">67</field></shadow><block type="tank_NearestEnemyDirectionAngle"></block></value></block></statement><statement name="ELSE"><block type="tank_moveForward"></block></statement></block></next></block></next></block></statement></block></xml>';
-    } else{
+    } else {
         $data = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="agent" x="113" y="63"><field name="agentType">0</field><statement name="nodes"><block type="tank_fireAtAngle"><field name="angle">60</field></block></statement></block></xml>';
     }
 }
@@ -36,7 +36,7 @@ if (!empty($_GET['level'])) {
 <head>
     <meta charset="utf-8">
     <meta name="google" value="notranslate">
-    <title>Blockly Demo:</title>
+    <title>Behaviac Demo</title>
     <link rel="stylesheet" href="style.css">
     <script src="storage.js"></script>
     <script src="blockly/blockly_compressed.js"></script>
@@ -53,7 +53,7 @@ if (!empty($_GET['level'])) {
     <script src="plugin/phaser/blob.js" type="text/javascript"></script>
     <script src="plugin/phaser/canvas-to-blob.js" type="text/javascript"></script>
     <script src="plugin/phaser/filesaver.js" type="text/javascript"></script>
-<!--    <script src="plugin/phaser/--><?php //echo $embedJS ?><!--" type="text/javascript"></script>-->
+    <!--    <script src="plugin/phaser/--><?php //echo $embedJS ?><!--" type="text/javascript"></script>-->
     <script src="games/tanks.js" type="text/javascript"></script>
 
     <script src="behaviac.js" type="text/javascript"></script>
@@ -65,6 +65,11 @@ if (!empty($_GET['level'])) {
             font-size: 14px;
             /*background-color: #000000;*/
             /*color: #fff;*/
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 900;
         }
     </style>
 
@@ -100,14 +105,15 @@ if (!empty($_GET['level'])) {
             <table width="100%" height="100%">
                 <tr>
                     <td>
-                        <h1><a href="//www.behaviac.com">Behaviac</a>&rlm; &gt;
+                        <h1 class="title"><a href="//www.behaviac.com">Behaviac</a>&rlm; &gt;
                             <a href="#">Demos</a>&rlm; &gt;
                             <span id="title">...</span>
                         </h1>
                     </td>
                     <td class="farSide">
                         <button id="btnStore" class="" title="..." style="font-size: 12px;margin-top:16px;">保存</button>
-                        <button id="btnRestore" class="" title="..." style="font-size: 12px;margin-top:16px;">读取</button>
+                        <button id="btnRestore" class="" title="..." style="font-size: 12px;margin-top:16px;">读取
+                        </button>
                         <select id="languageMenu"></select>
                     </td>
                 </tr>
@@ -118,10 +124,10 @@ if (!empty($_GET['level'])) {
                                 <td id="tab_blocks" class="tabon">...</td>
                                 <td class="tabmin">&nbsp;</td>
                                 <td id="tab_javascript" class="taboff">JavaScript</td>
-<!--                                <td class="tabmin">&nbsp;</td>-->
-<!--                                <td id="tab_python" class="taboff">CPP</td>-->
-<!--                                <td class="tabmin">&nbsp;</td>-->
-<!--                                <td id="tab_php" class="taboff">C#</td>-->
+                                <!--                                <td class="tabmin">&nbsp;</td>-->
+                                <!--                                <td id="tab_python" class="taboff">CPP</td>-->
+                                <!--                                <td class="tabmin">&nbsp;</td>-->
+                                <!--                                <td id="tab_php" class="taboff">C#</td>-->
                                 <td class="tabmin">&nbsp;</td>
                                 <td id="tab_xml" class="taboff">XML</td>
                                 <td class="tabmax">
